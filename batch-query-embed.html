@@ -41,11 +41,8 @@
 
     <div class="grid">
       <div class="cell"><div class="k">批次號</div><div class="v mono" id="vBatch">—</div></div>
-      <div class="cell"><div class="k">咖啡因</div><div class="v" id="vExtra">—</div></div>
       <div class="cell"><div class="k">報告日期</div><div class="v" id="vDate">—</div></div>
     </div>
-    <div style="text-align:center"><span class="badge" id="vBadge">&#10003; 已驗證</span></div>
-
     <div class="dl">
       <a id="lGc" href="#" target="_blank" rel="noopener"><div class="n">GC/MS 檢測圖譜</div><div class="g">下載文件 &rarr;</div></a>
       <a id="lMs" href="#" target="_blank" rel="noopener"><div class="n">MSDS 安全資料</div><div class="g">調閱文件 &rarr;</div></a>
@@ -61,8 +58,8 @@
   const BASE = "https://www.florihana.com/en/module/axproductattachments/export";
   // 已知批號的附加資料（沒列到的批號仍可查，只是日期/咖啡因顯示 —）
   const META = {
-    "050326F": { date:"05/03/2026", extra:"1240 ppm" }
-    // 之後新批號往這加：  "新批號": { date:"DD/MM/YYYY", extra:"1240 ppm" },
+    "050326F": { date:"05/03/2026" }
+    // 之後新批號往這加：  "新批號": { date:"DD/MM/YYYY" },
   };
 
   const $ = id => document.getElementById(id);
@@ -78,12 +75,10 @@
     const batch = $('b').value.trim().toUpperCase();
     $('b').value = batch;
     if(!batch){ return; }
-    const m = META[batch] || { date:'—', extra:'—' };
+    const m = META[batch] || { date:'—' };
     const u = urls(batch);
     $('vBatch').textContent = batch;
-    $('vExtra').textContent = m.extra;
     $('vDate').textContent  = m.date;
-    $('vBadge').style.display = META[batch] ? 'inline-block' : 'none';
     $('lGc').href = u.gc; $('lMs').href = u.ms; $('lTd').href = u.td;
     $('foot').textContent = `* 批號 ${batch} 對應 GC/MS 圖譜檔 ${CODE}${batch}.pdf；文件由原廠 Florihana 提供。`;
   }
