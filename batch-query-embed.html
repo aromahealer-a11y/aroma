@@ -7,26 +7,27 @@
 <style>
   *{box-sizing:border-box;}
   html,body{margin:0;background:transparent;}
-  body{ color:#1c2530; font-family:-apple-system,'PingFang TC','Noto Sans TC','Helvetica Neue',Helvetica,Arial,sans-serif; line-height:1.7; padding:8px; }
-  .wrap{ max-width:760px; margin:0 auto; }
-  .title{ border-bottom:1px solid #dde3ea; color:#2f4a6b; font-size:19px; font-weight:600; letter-spacing:.06em; margin:0 0 18px; padding-bottom:10px; }
-  .card{ background:#fff; border:1px solid #dde3ea; border-radius:12px; box-shadow:0 8px 24px rgba(28,37,48,.05); padding:28px; }
-  .lab{ color:#1c2530; font-size:14px; font-weight:600; display:block; margin-bottom:10px; }
-  .row{ display:flex; gap:10px; flex-wrap:wrap; }
-  .row input{ flex:1 1 200px; min-width:0; padding:12px; border:1px solid #c9d2dd; border-radius:7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px; text-transform:uppercase; letter-spacing:.04em; }
-  .row button{ flex:0 0 auto; background:#2f4a6b; color:#fff; border:none; border-radius:7px; padding:12px 24px; font-size:14px; font-weight:600; cursor:pointer; }
+  body{ color:#1c2530; font-family:-apple-system,'PingFang TC','Noto Sans TC','Helvetica Neue',Helvetica,Arial,sans-serif; line-height:1.6; padding:8px; }
+  /* 固定窄欄、置中：電腦與手機結構完全相同，高度才會一致 */
+  .wrap{ max-width:520px; margin:0 auto; }
+  .title{ border-bottom:1px solid #dde3ea; color:#2f4a6b; font-size:18px; font-weight:600; letter-spacing:.06em; margin:0 0 14px; padding-bottom:9px; }
+  .card{ background:#fff; border:1px solid #dde3ea; border-radius:12px; box-shadow:0 6px 18px rgba(28,37,48,.05); padding:20px; }
+  .lab{ color:#1c2530; font-size:13px; font-weight:600; display:block; margin-bottom:8px; }
+  .row{ display:flex; gap:8px; flex-wrap:nowrap; }
+  .row input{ flex:1 1 auto; min-width:0; padding:11px; border:1px solid #c9d2dd; border-radius:7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px; text-transform:uppercase; letter-spacing:.04em; }
+  .row button{ flex:0 0 auto; background:#2f4a6b; color:#fff; border:none; border-radius:7px; padding:0 18px; font-size:14px; font-weight:600; cursor:pointer; }
   .row button:hover{ filter:brightness(1.08); }
-  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; text-align:center; margin-top:22px; }
-  .cell{ background:#f6f8fa; border-radius:8px; padding:16px; }
-  .cell .k{ color:#8a8f98; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
-  .cell .v{ color:#1c2530; font-size:17px; font-weight:700; margin-top:4px; }
-  .cell .v.mono{ font-family:ui-monospace,Menlo,Consolas,monospace; }
-  .badge{ display:inline-block; background:#eaf3ee; color:#2f7a55; border-radius:999px; padding:4px 12px; font-size:12px; font-weight:600; margin-top:14px; }
-  .dl{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:18px; }
-  .dl a{ display:block; text-align:center; text-decoration:none; background:#fff; border:1px solid #dde3ea; border-radius:10px; padding:18px 14px; }
-  .dl a .n{ color:#1c2530; font-size:14px; font-weight:600; margin-bottom:8px; }
-  .dl a .g{ color:#2f4a6b; font-size:13px; font-weight:600; }
-  .foot{ color:#8a8f98; font-size:12px; margin:14px 0 0; }
+  .meta{ display:flex; gap:10px; justify-content:space-between; background:#f6f8fa; border-radius:8px; padding:12px 14px; margin-top:14px; font-size:13px; }
+  .meta .k{ color:#8a8f98; }
+  .meta b{ color:#1c2530; }
+  .meta .mono{ font-family:ui-monospace,Menlo,Consolas,monospace; }
+  /* 下載連結：永遠單欄橫條，電腦手機一致 */
+  .links{ margin-top:12px; }
+  .links a{ display:flex; align-items:center; justify-content:space-between; gap:10px; text-decoration:none; background:#fff; border:1px solid #dde3ea; border-radius:9px; padding:13px 16px; margin-bottom:8px; }
+  .links a:last-child{ margin-bottom:0; }
+  .links a .n{ color:#1c2530; font-size:14px; font-weight:600; }
+  .links a .g{ color:#2f4a6b; font-size:13px; font-weight:600; white-space:nowrap; }
+  .foot{ color:#8a8f98; font-size:11px; margin:12px 0 0; }
 </style>
 </head>
 <body>
@@ -39,14 +40,15 @@
       <button id="go">分析</button>
     </div>
 
-    <div class="grid">
-      <div class="cell"><div class="k">批次號</div><div class="v mono" id="vBatch">—</div></div>
-      <div class="cell"><div class="k">報告日期</div><div class="v" id="vDate">—</div></div>
+    <div class="meta">
+      <span><span class="k">批次號</span> <b class="mono" id="vBatch">—</b></span>
+      <span><span class="k">報告日期</span> <b id="vDate">—</b></span>
     </div>
-    <div class="dl">
-      <a id="lGc" href="#" target="_blank" rel="noopener"><div class="n">GC/MS 檢測圖譜</div><div class="g">下載文件 &rarr;</div></a>
-      <a id="lMs" href="#" target="_blank" rel="noopener"><div class="n">MSDS 安全資料</div><div class="g">調閱文件 &rarr;</div></a>
-      <a id="lTd" href="#" target="_blank" rel="noopener"><div class="n">TDS 技術規格</div><div class="g">調閱文件 &rarr;</div></a>
+
+    <div class="links">
+      <a id="lGc" href="#" target="_blank" rel="noopener"><span class="n">GC/MS 檢測圖譜</span><span class="g">下載文件 &rarr;</span></a>
+      <a id="lMs" href="#" target="_blank" rel="noopener"><span class="n">MSDS 安全資料</span><span class="g">調閱文件 &rarr;</span></a>
+      <a id="lTd" href="#" target="_blank" rel="noopener"><span class="n">TDS 技術規格</span><span class="g">調閱文件 &rarr;</span></a>
     </div>
     <p class="foot" id="foot"></p>
   </div>
@@ -56,7 +58,7 @@
   // ===== 設定 =====
   const CODE = "FLEX006";
   const BASE = "https://www.florihana.com/en/module/axproductattachments/export";
-  // 已知批號的附加資料（沒列到的批號仍可查，只是日期/咖啡因顯示 —）
+  // 已知批號的附加資料（沒列到的批號仍可查，只是日期顯示 —）
   const META = {
     "050326F": { date:"05/03/2026" }
     // 之後新批號往這加：  "新批號": { date:"DD/MM/YYYY" },
