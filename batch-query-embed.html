@@ -83,8 +83,19 @@
 
 <script>
   /* ===== 公版設定點 ===== */
-  // 商品代碼：優先從 iframe 網址 ?code= 讀取；讀不到才用預設值
-  const CODE = (new URLSearchParams(location.search).get('code') || "FLEX006").toUpperCase();
+  // 商品代碼自動偵測（依序嘗試）：
+  //   1) iframe 網址帶 ?code=FLE047 → 直接用（手動指定時）
+  //   2) 從外層商品頁網址 document.referrer 抓 FLEX/FLJ/FLK/FLE…代碼
+  //      （外層 iframe 需加 referrerpolicy="unsafe-url"，才會帶完整網址進來）
+  //   3) 都讀不到 → 預設 FLEX006
+  function detectCode(){
+    const q = new URLSearchParams(location.search).get('code');
+    if (q) return q.toUpperCase();
+    const m = (document.referrer || "").match(/FL[A-Z]+\d+/i);
+    if (m) return m[0].toUpperCase();
+    return "FLEX006";
+  }
+  const CODE = detectCode();
   const BASE = "https://www.florihana.com/en/module/axproductattachments/export";
 
   // 例外檔名表：只有「檔名非標準」的商品才需要在這裡登記。
