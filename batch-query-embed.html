@@ -113,8 +113,8 @@
       msds: "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf",
       tds:  "FLEX006 CAFE TORIFIE BIO FT 2026.pdf"
     }
-    // 之後有例外的商品再往這加：
-    // "FLEX006": { msds:"...", tds:"..." },
+    // 之後有「其他」例外商品照這個格式往這加（換成該商品的代碼與完整檔名）：
+    // "新商品代碼": { msds: "完整MSDS檔名.pdf", tds: "完整TDS檔名.pdf" },
   };
   const _ov = OVERRIDES[CODE] || {};
   const MSDS_FILE = _ov.msds || "";   // 空字串 → 自動套標準規則
