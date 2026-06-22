@@ -89,7 +89,7 @@
   //   1) iframe 網址帶 ?code=FLE047 → 直接用（手動指定時）
   //   2) 從外層商品頁網址 document.referrer 抓 FLEX/FLJ/FLK/FLE…代碼
   //      （外層 iframe 需加 referrerpolicy="unsafe-url"，才會帶完整網址進來）
-  //   3) 都讀不到 → 預設 FLEX006
+  //   3) 都讀不到 → 回傳空字串，顯示空狀態提示（不帶任何商品）
   function detectCode(){
     const q = new URLSearchParams(location.search).get('code');
     if (q) return q.toUpperCase();
@@ -102,13 +102,19 @@
 
   // 例外檔名表：只有「檔名非標準」的商品才需要在這裡登記。
   // 標準規則 = MSDS:{代號}.pdf、TDS:{代號}FT.pdf，沒登記的商品自動套用，不必管。
+  //
+  // 怎麼新增例外（某商品 MSDS/TDS 點下去是空白或壞檔時）：
+  //  1. 到該商品 Florihana 頁面點 MSDS/TDS，複製網址 file= 後的完整檔名。
+  //  2. 照下面格式加一筆：代碼大寫、檔名整串照貼、各筆之間加逗號。
+  //  3. Commit，GitHub Pages 約 1 分鐘後生效。
+  //  只有一項例外就只寫那項，另一項省略 → 自動走標準規則。
   const OVERRIDES = {
     "FLEX006": {
       msds: "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf",
       tds:  "FLEX006 CAFE TORIFIE BIO FT 2026.pdf"
     }
     // 之後有例外的商品再往這加：
-    // "FLEX007": { msds:"...", tds:"..." },
+    // "FLEX006": { msds:"...", tds:"..." },
   };
   const _ov = OVERRIDES[CODE] || {};
   const MSDS_FILE = _ov.msds || "";   // 空字串 → 自動套標準規則
