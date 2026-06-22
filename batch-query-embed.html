@@ -82,13 +82,24 @@
 </div>
 
 <script>
-  /* ===== 公版設定點：換產品只改這裡 ===== */
-  const CODE = "FLEX006";   // 原廠商品代碼
+  /* ===== 公版設定點 ===== */
+  // 商品代碼：優先從 iframe 網址 ?code= 讀取；讀不到才用預設值
+  const CODE = (new URLSearchParams(location.search).get('code') || "FLEX006").toUpperCase();
   const BASE = "https://www.florihana.com/en/module/axproductattachments/export";
-  // 標準規則：MSDS = {代號}.pdf、TDS = {代號}FT.pdf。
-  // 若該商品檔名是例外（像這支咖啡），就填實際檔名覆蓋；留空字串 "" 則自動套標準規則。
-  const MSDS_FILE = "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf";  // 例外；留 "" 則用 FLEX006.pdf
-  const TDS_FILE  = "FLEX006 CAFE TORIFIE BIO FT 2026.pdf";   // 例外；留 "" 則用 FLEX006FT.pdf
+
+  // 例外檔名表：只有「檔名非標準」的商品才需要在這裡登記。
+  // 標準規則 = MSDS:{代號}.pdf、TDS:{代號}FT.pdf，沒登記的商品自動套用，不必管。
+  const OVERRIDES = {
+    "FLEX006": {
+      msds: "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf",
+      tds:  "FLEX006 CAFE TORIFIE BIO FT 2026.pdf"
+    }
+    // 之後有例外的商品再往這加：
+    // "FLEX007": { msds:"...", tds:"..." },
+  };
+  const _ov = OVERRIDES[CODE] || {};
+  const MSDS_FILE = _ov.msds || "";   // 空字串 → 自動套標準規則
+  const TDS_FILE  = _ov.tds  || "";
   /* ===================================== */
 
   const $ = id => document.getElementById(id);
