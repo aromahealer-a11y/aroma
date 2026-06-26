@@ -99,6 +99,10 @@
   const CODE = detectCode();
   const BASE = "https://www.florihana.com/en/module/axproductattachments/export";
 
+  // 系列判斷：FLH / FLV / FLM ＝ 第一份文件是 Analyse（分析報告）；其餘＝精油（GC/MS）
+  const IS_ANALYSE = /^FL[HVM]/.test(CODE);
+  const GC_TYPE    = IS_ANALYSE ? "Analyse" : "Chromatographies";
+
   // 例外檔名表：只有「檔名非標準」的商品才需要在這裡登記。
   // 標準規則 = MSDS:{代號}.pdf、TDS:{代號}FT.pdf，沒登記的商品自動套用，不必管。
   //
@@ -126,7 +130,7 @@
   function urls(batch){
     const c = encodeURIComponent(CODE);
     return {
-      gc: `${BASE}?type=Chromatographies&file=${encodeURIComponent(CODE+batch+'.pdf')}&reference=${c}`,
+      gc: `${BASE}?type=${encodeURIComponent(GC_TYPE)}&file=${encodeURIComponent(CODE+batch+'.pdf')}&reference=${c}`,
       ms: `${BASE}?type=${encodeURIComponent('Fiche de sécurité')}&file=${encodeURIComponent(MSDS_FILE || CODE+'.pdf')}&reference=${c}`,
       td: `${BASE}?type=${encodeURIComponent('Fiche technique')}&file=${encodeURIComponent(TDS_FILE || CODE+'FT.pdf')}&reference=${c}`
     };
@@ -148,6 +152,12 @@
     }
   }
   if (CODE) {
+    // FLH/FLV/FLM 系列：第一張卡由 GC/MS 改為 Analysis（分析報告）
+    if (IS_ANALYSE) {
+      $('lGc').querySelector('.badge').textContent = 'Analysis';
+      $('lGc').querySelector('.ttl').textContent   = '分析報告';
+      $('lGc').querySelector('.desc').textContent  = '每一批次對應的分析檢測報告。';
+    }
     // 有商品代碼：正常啟用查詢
     $('go').onclick = analyze;
     $('b').addEventListener('keydown', e=>{ if(e.key==='Enter') analyze(); });
