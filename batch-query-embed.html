@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>批次成分查詢 (GC/MS)</title>
+<title>批次成分文件查詢｜Aromahealer</title>
 <style>
   *{box-sizing:border-box;}
-  html,body{margin:0;background:transparent;}
-  body{ color:#1c2530; font-family:-apple-system,'PingFang TC','Noto Sans TC','Helvetica Neue',Helvetica,Arial,sans-serif; line-height:1.6; padding:6px; -webkit-font-smoothing:antialiased; }
+  html,body{margin:0;background:#f4f6f8;}
+  body{ color:#1c2530; font-family:-apple-system,'PingFang TC','Noto Sans TC','Helvetica Neue',Helvetica,Arial,sans-serif; line-height:1.6; padding:28px 14px; -webkit-font-smoothing:antialiased; }
   /* 置中窄欄；電腦最寬 700，手機自動滿版 */
   .wrap{ max-width:700px; margin:0 auto; }
   .card{ background:#fff; border:1px solid #dde3ea; border-radius:12px; box-shadow:0 6px 18px rgba(28,37,48,.05); padding:24px 22px; }
@@ -36,7 +36,7 @@
   .empty{ display:none; font-size:14px; color:#8a8f98; line-height:1.9; text-align:center; padding:20px 6px 6px; }
 
   @media(max-width:520px){
-    body{ padding:0; }
+    body{ padding:16px 10px; }
     .wrap{ max-width:100%; }
     .card{ padding:18px 14px; border-radius:10px; }
     .row button{ padding:0 16px; }
@@ -86,9 +86,8 @@
 <script>
   /* ===== 公版設定點 ===== */
   // 商品代碼自動偵測（依序嘗試）：
-  //   1) iframe 網址帶 ?code=FLE047 → 直接用（手動指定時）
-  //   2) 從外層商品頁網址 document.referrer 抓 FLEX/FLJ/FLK/FLE…代碼
-  //      （外層 iframe 需加 referrerpolicy="unsafe-url"，才會帶完整網址進來）
+  //   1) 連結網址帶 ?code=FLE047 → 直接用（入口卡片就是用這個帶）
+  //   2) 從來源頁網址 document.referrer 抓 FLEX/FLJ/FLK/FLE…代碼（備援）
   //   3) 都讀不到 → 回傳空字串，顯示空狀態提示（不帶任何商品）
   function detectCode(){
     const q = new URLSearchParams(location.search).get('code');
@@ -109,16 +108,18 @@
   //  3. Commit，GitHub Pages 約 1 分鐘後生效。
   //  只有一項例外就只寫那項，另一項省略 → 自動走標準規則。
   const OVERRIDES = {
-    "FLEX006": {
-      msds: "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf",
-      tds:  "FLEX006 CAFE TORIFIE BIO FT 2026.pdf"
-    }
-    // 之後有「其他」例外商品照這個格式往這加（換成該商品的代碼與完整檔名）：
+    // （測試中：FLEX006 已移除，改由平台連結的 &msds=/&tds= 參數帶入）
+    // 要改回集中登記時，照這個格式加：
     // "新商品代碼": { msds: "完整MSDS檔名.pdf", tds: "完整TDS檔名.pdf" },
   };
+  // 例外檔名來源（優先序）：
+  //   ① 連結網址參數 msds=/tds=（直接寫在商品頁連結，不必動 GitHub）
+  //   ② OVERRIDES 例外表（登記在本檔）
+  //   ③ 都沒有 → 標準規則 代號.pdf / 代號FT.pdf
+  const _p = new URLSearchParams(location.search);
   const _ov = OVERRIDES[CODE] || {};
-  const MSDS_FILE = _ov.msds || "";   // 空字串 → 自動套標準規則
-  const TDS_FILE  = _ov.tds  || "";
+  const MSDS_FILE = _p.get('msds') || _ov.msds || "";
+  const TDS_FILE  = _p.get('tds')  || _ov.tds  || "";
   /* ===================================== */
 
   const $ = id => document.getElementById(id);
@@ -158,16 +159,6 @@
     document.querySelector('.docs').style.display = 'none';
     document.querySelector('.empty').style.display = 'block';
   }
-
-  // ===== 回報實際高度給外層頁面，讓 iframe 高度自動貼合（手機/電腦一致）=====
-  function postHeight(){
-    const h = Math.ceil(document.documentElement.getBoundingClientRect().height);
-    parent.postMessage({ ahBatchHeight: h }, '*');
-  }
-  window.addEventListener('load', postHeight);
-  window.addEventListener('resize', postHeight);
-  // 內容因互動而改變時也重新回報
-  if (window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
 </script>
 </body>
 </html>
