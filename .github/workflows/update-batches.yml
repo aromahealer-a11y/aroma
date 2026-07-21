@@ -1,0 +1,44 @@
+name: 更新批次文件清單
+
+# 平常不自動跑。進貨後手動執行，在 codes 欄填入該次進貨的商品代碼即可，
+# 只會抓那幾頁（幾秒完成，對原廠站幾乎沒有負擔）。
+# 排程只留每半年一次的全掃當安全網，時間選在法國深夜。
+on:
+  schedule:
+    - cron: '0 2 1 1,7 *'    # 每年 1/1 與 7/1 UTC 02:00 ＝ 法國凌晨 3～4 點
+  workflow_dispatch:
+    inputs:
+      codes:
+        description: '只更新這幾項（空白＝全部）。例：FLV003 FLE047 FLH002'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 抓取批次清單
+        env:
+          CODES: ${{ github.event.inputs.codes }}
+        run: node scripts/fetch-batches.mjs
+
+      - name: 有變動才提交
+        run: |
+          git add batches.json
+          if git diff --cached --quiet; then
+            echo "批次清單無變動，略過提交。"
+          else
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: 更新批次文件清單 $(date -u '+%Y-%m-%d')"
+            git push
+          fi
