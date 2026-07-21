@@ -1,235 +1,162 @@
-{
- "updated": "2026-07-21T14:44:37.441Z",
- "products": {
-  "FLV003": {
-   "url": "https://www.florihana.com/en/carrier-oils/1350-apricot-seed-organic.html",
-   "analyse": [
-    "190626TR",
-    "110526TR",
-    "110426TR",
-    "100426TR",
-    "090226TR",
-    "261125TR",
-    "251125TR",
-    "071025TR",
-    "040825TR",
-    "120625TR",
-    "160525TR",
-    "010425TR",
-    "140225TR",
-    "130225TR",
-    "061224TR",
-    "131124TR",
-    "181024TR",
-    "171024TR",
-    "190924TR",
-    "190724TR",
-    "120624TR",
-    "110624TR",
-    "090524TR",
-    "120424TR",
-    "080324TR",
-    "260124TR",
-    "250124TR",
-    "081223TR",
-    "021123TR",
-    "111023TR",
-    "021023TR",
-    "290923TR",
-    "300823TR",
-    "030823TR",
-    "300623TR",
-    "150623TR",
-    "010623TR",
-    "120523TR",
-    "250423TR",
-    "240423TR",
-    "070323TR",
-    "200223TR",
-    "030223TR"
-   ],
-   "gc": [],
-   "msds": "FLV003.pdf",
-   "tds": "FLV003FT.pdf"
-  },
-  "FLV049": {
-   "url": "https://www.florihana.com/en/carrier-oils/1649-jojoba-organic.html",
-   "analyse": [
-    "010726IL",
-    "300626IL",
-    "290626IL",
-    "150526IL",
-    "140526IL",
-    "160426IL",
-    "150426IL",
-    "160326IL",
-    "230226IL",
-    "290126IL",
-    "280126IL",
-    "060126IL",
-    "181225IL",
-    "171125IL",
-    "041125IL",
-    "031125IL",
-    "201025IL",
-    "300925IL",
-    "290925IL",
-    "230925IL",
-    "220925IL",
-    "050825IL",
-    "040825IL",
-    "020725IL",
-    "300525IL",
-    "290525IL",
-    "130525IL",
-    "020425IL",
-    "070325IL",
-    "230125IL",
-    "091224IL",
-    "251024IL",
-    "241024IL",
-    "230924IL",
-    "310724IL",
-    "120724IL",
-    "220424IL",
-    "140324IL",
-    "210224IL",
-    "160124IL",
-    "011223IL",
-    "201023IL",
-    "200923IL",
-    "220823IL",
-    "210823IL",
-    "010823IL",
-    "310723IL",
-    "110723IL",
-    "100723IL",
-    "280623IL",
-    "060623IL",
-    "050623IL",
-    "170523IL",
-    "120523IL",
-    "110523IL",
-    "100523IL",
-    "030423IL",
-    "280323IL",
-    "270323IL",
-    "160223IL",
-    "100223IL",
-    "090223IL",
-    "170123IL"
-   ],
-   "gc": [],
-   "msds": "FLV049.pdf",
-   "tds": "FLV049FT.pdf"
-  },
-  "FLM001": {
-   "url": "https://www.florihana.com/en/macerated-oils/852-arnica-organic-flm001.html",
-   "analyse": [
-    "050526F",
-    "150426F",
-    "250226F",
-    "111225F",
-    "101225F",
-    "171125F",
-    "270825F",
-    "090725F",
-    "050625F",
-    "220525F",
-    "200225F",
-    "190225F",
-    "111224F",
-    "281024F",
-    "041024F",
-    "290824F",
-    "090724F",
-    "080724F",
-    "130524F",
-    "280324F",
-    "050224F",
-    "041223F",
-    "081123F",
-    "071123F",
-    "250823F",
-    "010823F",
-    "140623F",
-    "260523F",
-    "040423F",
-    "140323F",
-    "130323F",
-    "100223F",
-    "061222F",
-    "051222F",
-    "131022F",
-    "150922F",
-    "020822F",
-    "090622F",
-    "050522F",
-    "110322F",
-    "100322F",
-    "220222F",
-    "310122F"
-   ],
-   "gc": [],
-   "msds": "FLM001.pdf",
-   "tds": "FLM001FT.pdf"
-  },
-  "FLH002": {
-   "url": "https://www.florihana.com/en/hydrosols/697-juniper-organic.html",
-   "analyse": [
-    "220626F",
-    "200526F",
-    "270426F",
-    "200326F",
-    "290126F",
-    "290925F",
-    "280825F",
-    "250725F",
-    "260525F",
-    "040425F",
-    "070125F",
-    "251124F",
-    "160924F",
-    "180724F",
-    "100624F",
-    "060524F",
-    "220324F",
-    "160224F",
-    "250124F",
-    "280723F"
-   ],
-   "gc": [],
-   "msds": "FLH002.pdf",
-   "tds": "FLH002FT.pdf"
-  },
-  "FLEX006": {
-   "url": "https://www.florihana.com/en/CO2-extracts/1883-co2-extract-coffee-organic.html",
-   "analyse": [],
-   "gc": [
-    "050326F"
-   ],
-   "msds": "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf",
-   "tds": "FLEX006 CAFE TORIFIE BIO FT 2026.pdf"
-  },
-  "FLE047": {
-   "url": "https://www.florihana.com/en/essential-oils/247-lavender-vera-organic.html",
-   "analyse": [],
-   "gc": [
-    "AZ161025F",
-    "AZ041024F",
-    "AZ180923F",
-    "AW070922F",
-    "AF160921F",
-    "AF180121F",
-    "AF200820F",
-    "AK190520F",
-    "AF051119F",
-    "B191118F",
-    "B170918F",
-    "B280518F"
-   ],
-   "msds": "FLE047.pdf",
-   "tds": "FLE047FT.pdf"
-  }
- }
+/**
+ * Florihana 批次文件清單抓取器
+ * ---------------------------------------------------------------
+ * 用途：把每個商品在原廠頁面上公開的「批次分析報告 / GC 圖譜 / MSDS / TDS」
+ *       檔名抓下來，輸出成 batches.json，供 batch-query-embed.html 做成下拉選單。
+ *
+ * 執行：node scripts/fetch-batches.mjs
+ * 需求：Node 18+（使用內建 fetch，無外部套件）
+ *
+ * 資料來源與規則（2026-07-21 對線上頁面實測）：
+ *   ① 用站內搜尋定位商品頁：/en/search?controller=search&s=<代碼>
+ *      搜尋結果每頁都會夾帶固定的推薦商品連結，所以候選頁要再抓下來，
+ *      確認內容含 reference=<代碼> 才算命中。
+ *   ② 商品頁的附件連結格式：
+ *      /module/axproductattachments/export?type=<類型>&file=<檔名>&reference=<代碼>
+ *      類型：Analyse（分析報告）／Chromatographies（GC 圖譜）／
+ *            Fiche de sécurité（MSDS）／Fiche technique（TDS）
+ *   ③ 批次檔名 = 代碼 + DDMMYY + 後綴（例：FLV003190626TR.pdf → 批號 190626TR）
+ *
+ * 命中的商品頁網址會寫回 batches.json，下次執行直接沿用、省一次搜尋。
+ */
+
+const CODES_FILE = new URL('../codes.txt', import.meta.url);
+const OUT_FILE   = new URL('../batches.json', import.meta.url);
+const ORIGIN     = 'https://www.florihana.com';
+const UA         = 'Mozilla/5.0 (compatible; aromahealer-batch-sync/1.0)';
+const DELAY_MS   = 700;   // 對原廠站的禮貌間隔
+const TIMEOUT_MS = 30000;
+
+const TYPES = {
+  analyse: 'Analyse',
+  gc:      'Chromatographies',
+  msds:    'Fiche de sécurité',
+  tds:     'Fiche technique',
+};
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+async function get(url) {
+  const ctl = setTimeout(() => {}, 0);
+  clearTimeout(ctl);
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA, 'Accept-Language': 'en' },
+    redirect: 'follow',
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} ${url}`);
+  return res.text();
 }
+
+/** 從商品頁 HTML 取出所有附件，依類型分組 */
+function parseAttachments(html, code) {
+  const out = { analyse: [], gc: [], msds: '', tds: '' };
+  // href 內的 & 可能是 &amp;，先正規化
+  const flat = html.replace(/&amp;/g, '&');
+  const re = /axproductattachments\/export\?type=([^&"']+)&file=([^&"']+)/g;
+  let m;
+  while ((m = re.exec(flat)) !== null) {
+    const type = decodeURIComponent(m[1]);
+    const file = decodeURIComponent(m[2]);
+    if (!file.toUpperCase().startsWith(code)) continue;
+    if (type === TYPES.analyse || type === TYPES.gc) {
+      const batch = file.slice(code.length).replace(/\.pdf$/i, '');
+      if (!batch) continue;                       // 無批號的總表檔，跳過
+      const key = type === TYPES.analyse ? 'analyse' : 'gc';
+      if (!out[key].includes(batch)) out[key].push(batch);
+    } else if (type === TYPES.msds) {
+      out.msds = file;
+    } else if (type === TYPES.tds) {
+      out.tds = file;
+    }
+  }
+  // 批號含 DDMMYY → 轉成可排序的 YYMMDD，新的排前面
+  // 兩種格式都要吃：190626TR（純數字開頭）、AF051119F（字母前綴，精油系列）
+  const rank = b => {
+    const m = /(\d{2})(\d{2})(\d{2})/.exec(b);
+    return m ? `${m[3]}${m[2]}${m[1]}` : '000000';
+  };
+  out.analyse.sort((a, b) => rank(b).localeCompare(rank(a)));
+  out.gc.sort((a, b) => rank(b).localeCompare(rank(a)));
+  return out;
+}
+
+/** 以站內搜尋定位商品頁；回傳確認過的網址 */
+async function findProductUrl(code) {
+  const html = await get(`${ORIGIN}/en/search?controller=search&s=${encodeURIComponent(code)}`);
+  const links = [...new Set(
+    // 分類路徑可能含大寫，例如 /en/CO2-extracts/…
+    (html.match(/https:\/\/www\.florihana\.com\/en\/[A-Za-z0-9-]+\/[0-9][^"']*\.html/g) || [])
+  )];
+  for (const url of links) {
+    await sleep(DELAY_MS);
+    try {
+      const page = await get(url);
+      if (page.replace(/&amp;/g, '&').includes(`reference=${code}`)) return { url, page };
+    } catch (e) {
+      console.warn(`  ! 取商品頁失敗 ${url}：${e.message}`);
+    }
+  }
+  return null;
+}
+
+async function main() {
+  const fs = await import('node:fs/promises');
+
+  const codes = (await fs.readFile(CODES_FILE, 'utf8'))
+    .split(/\r?\n/)
+    .map(s => s.replace(/#.*$/, '').trim().toUpperCase())
+    .filter(Boolean);
+
+  let prev = { products: {} };
+  try { prev = JSON.parse(await fs.readFile(OUT_FILE, 'utf8')); } catch {}
+
+  // CODES 環境變數可指定「只抓這幾項」（進貨後更新單一商品用），未指定則全部
+  const only = (process.env.CODES || '')
+    .toUpperCase().split(/[\s,]+/).filter(Boolean);
+  const targets = only.length ? only : codes;
+
+  // 這次沒抓的商品，原封不動沿用上次結果
+  const products = {};
+  for (const code of new Set([...codes, ...only])) {
+    if (prev.products?.[code]) products[code] = prev.products[code];
+  }
+  if (only.length) console.log(`只更新指定商品：${targets.join(' ')}\n`);
+
+  let ok = 0, failed = 0;
+
+  for (const code of targets) {
+    process.stdout.write(`${code} … `);
+    try {
+      const cachedUrl = prev.products?.[code]?.url;
+      let url = cachedUrl, page = null;
+
+      if (url) {
+        page = await get(url);
+        if (!page.replace(/&amp;/g, '&').includes(`reference=${code}`)) page = null;  // 網址失效
+      }
+      if (!page) {
+        const found = await findProductUrl(code);
+        if (!found) throw new Error('搜尋不到對應商品頁');
+        url = found.url; page = found.page;
+      }
+
+      const att = parseAttachments(page, code);
+      products[code] = { url, ...att };
+      console.log(`分析報告 ${att.analyse.length} 筆 / GC ${att.gc.length} 筆`);
+      ok++;
+    } catch (e) {
+      console.log(`失敗：${e.message}`);
+      if (prev.products?.[code]) products[code] = prev.products[code];   // 保留上次結果
+      failed++;
+    }
+    await sleep(DELAY_MS);
+  }
+
+  const json = JSON.stringify({ updated: new Date().toISOString(), products }, null, 1);
+  await fs.writeFile(OUT_FILE, json + '\n', 'utf8');
+  console.log(`\n完成：本次更新 ${ok} 項、失敗 ${failed} 項，batches.json 共 ${Object.keys(products).length} 項`);
+  if (ok === 0) process.exit(1);   // 全數失敗才視為錯誤，避免單一商品下架就中斷排程
+}
+
+main().catch(e => { console.error(e); process.exit(1); });
