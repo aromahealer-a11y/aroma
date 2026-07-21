@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-21T14:35:38.805Z",
+ "updated": "2026-07-21T14:44:37.441Z",
  "products": {
   "FLV003": {
    "url": "https://www.florihana.com/en/carrier-oils/1350-apricot-seed-organic.html",
@@ -123,6 +123,57 @@
    "msds": "FLV049.pdf",
    "tds": "FLV049FT.pdf"
   },
+  "FLM001": {
+   "url": "https://www.florihana.com/en/macerated-oils/852-arnica-organic-flm001.html",
+   "analyse": [
+    "050526F",
+    "150426F",
+    "250226F",
+    "111225F",
+    "101225F",
+    "171125F",
+    "270825F",
+    "090725F",
+    "050625F",
+    "220525F",
+    "200225F",
+    "190225F",
+    "111224F",
+    "281024F",
+    "041024F",
+    "290824F",
+    "090724F",
+    "080724F",
+    "130524F",
+    "280324F",
+    "050224F",
+    "041223F",
+    "081123F",
+    "071123F",
+    "250823F",
+    "010823F",
+    "140623F",
+    "260523F",
+    "040423F",
+    "140323F",
+    "130323F",
+    "100223F",
+    "061222F",
+    "051222F",
+    "131022F",
+    "150922F",
+    "020822F",
+    "090622F",
+    "050522F",
+    "110322F",
+    "100322F",
+    "220222F",
+    "310122F"
+   ],
+   "gc": [],
+   "msds": "FLM001.pdf",
+   "tds": "FLM001FT.pdf"
+  },
   "FLH002": {
    "url": "https://www.florihana.com/en/hydrosols/697-juniper-organic.html",
    "analyse": [
@@ -150,6 +201,35 @@
    "gc": [],
    "msds": "FLH002.pdf",
    "tds": "FLH002FT.pdf"
+  },
+  "FLEX006": {
+   "url": "https://www.florihana.com/en/CO2-extracts/1883-co2-extract-coffee-organic.html",
+   "analyse": [],
+   "gc": [
+    "050326F"
+   ],
+   "msds": "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf",
+   "tds": "FLEX006 CAFE TORIFIE BIO FT 2026.pdf"
+  },
+  "FLE047": {
+   "url": "https://www.florihana.com/en/essential-oils/247-lavender-vera-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ161025F",
+    "AZ041024F",
+    "AZ180923F",
+    "AW070922F",
+    "AF160921F",
+    "AF180121F",
+    "AF200820F",
+    "AK190520F",
+    "AF051119F",
+    "B191118F",
+    "B170918F",
+    "B280518F"
+   ],
+   "msds": "FLE047.pdf",
+   "tds": "FLE047FT.pdf"
   }
  }
 }
