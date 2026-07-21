@@ -70,9 +70,10 @@ function parseAttachments(html, code) {
       out.tds = file;
     }
   }
-  // 批號 DDMMYY + 後綴 → 轉成可排序的 YYMMDD，新的排前面
+  // 批號含 DDMMYY → 轉成可排序的 YYMMDD，新的排前面
+  // 兩種格式都要吃：190626TR（純數字開頭）、AF051119F（字母前綴，精油系列）
   const rank = b => {
-    const m = /^(\d{2})(\d{2})(\d{2})/.exec(b);
+    const m = /(\d{2})(\d{2})(\d{2})/.exec(b);
     return m ? `${m[3]}${m[2]}${m[1]}` : '000000';
   };
   out.analyse.sort((a, b) => rank(b).localeCompare(rank(a)));
@@ -84,7 +85,8 @@ function parseAttachments(html, code) {
 async function findProductUrl(code) {
   const html = await get(`${ORIGIN}/en/search?controller=search&s=${encodeURIComponent(code)}`);
   const links = [...new Set(
-    (html.match(/https:\/\/www\.florihana\.com\/en\/[a-z0-9-]+\/[0-9][^"']*\.html/g) || [])
+    // 分類路徑可能含大寫，例如 /en/CO2-extracts/…
+    (html.match(/https:\/\/www\.florihana\.com\/en\/[A-Za-z0-9-]+\/[0-9][^"']*\.html/g) || [])
   )];
   for (const url of links) {
     await sleep(DELAY_MS);
