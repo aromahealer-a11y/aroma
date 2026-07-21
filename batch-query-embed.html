@@ -38,6 +38,10 @@
   .row button{ flex:0 0 auto; padding:0 22px; border:0; border-radius:2px; cursor:pointer;
         background:#1b305c; color:#fff; font-size:14px; font-weight:700; letter-spacing:.04em; }
   .hint{ margin:-8px 0 18px; font-size:12px; color:#94a3b8; }
+  /* 後路：平常只是一行小字，點了才展開輸入框 */
+  .fallback{ margin:-10px 0 16px; font-size:12px; }
+  .fallback a{ color:#94a3b8; text-decoration:none; border-bottom:1px solid rgba(148,163,184,.5); }
+  .fallback a:hover{ color:#1b305c; border-bottom-color:#1b305c; }
 
   .docs{ display:flex; flex-direction:column; gap:10px; }
   .doc{ display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; padding:16px 18px;
@@ -78,6 +82,7 @@
     <button id="go" hidden>查詢</button>
   </div>
   <p class="hint" id="hint" hidden></p>
+  <p class="fallback" id="fallback" hidden><a href="#" id="fallbackLink">批號不在清單中？改用輸入的</a></p>
 
   <div class="docs" id="docs">
     <a class="doc off" id="lGc" target="_blank" rel="noopener">
@@ -152,6 +157,7 @@
   }
 
   function enableManual(msg){
+    $('fallback').hidden = true;
     $('sel').hidden = true;
     $('b').hidden = false;
     $('go').hidden = false;
@@ -213,13 +219,13 @@
         o.value = b; o.textContent = label(b);
         sel.appendChild(o);
       }
-      const other = document.createElement('option');
-      other.value = '__manual__'; other.textContent = '找不到我的批號…';
-      sel.appendChild(other);
+      sel.onchange = () => apply(sel.value);
 
-      sel.onchange = () => {
-        if (sel.value === '__manual__'){ enableManual('請輸入瓶身標籤上的完整批號，例如 190626TR。'); return; }
-        apply(sel.value);
+      // 清單正常時，下方留一行小字當後路（例如剛進的新批號還沒同步）
+      $('fallback').hidden = false;
+      $('fallbackLink').onclick = e => {
+        e.preventDefault();
+        enableManual('請輸入瓶身標籤上的批號，例如 190626TR');
       };
     })
     .catch(() => enableManual('批次清單暫時無法載入，請直接輸入批號。'));
