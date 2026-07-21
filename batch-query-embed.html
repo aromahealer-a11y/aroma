@@ -2,148 +2,130 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>批次成分文件查詢｜Aromahealer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>批次文件查詢</title>
+<!--
+  批次文件查詢 widget
+  ---------------------------------------------------------------
+  用法（商品頁以 iframe 內嵌）：
+    <iframe src="…/batch-query-embed.html?code=FLV003" width="100%" height="300" style="border:0"></iframe>
+
+  網址參數：
+    code=FLV003        商品代碼（必要；未帶則嘗試從 referrer 猜，再不行顯示提示）
+    only=analysis      只顯示分析報告／GC 那張卡（商品頁已自行列出 MSDS、TDS 時用）
+    msds=檔名.pdf      例外檔名（檔名非標準規則時才需要）
+    tds=檔名.pdf       同上
+
+  批次清單來自同目錄的 batches.json，由 .github/workflows/update-batches.yml
+  每日自動抓取原廠頁面更新。讀不到或該商品不在清單裡時，自動退回手動輸入批號。
+-->
 <style>
-  *{box-sizing:border-box;}
-  html,body{margin:0;background:#f4f6f8;}
-  body{ color:#1c2530; font-family:-apple-system,'PingFang TC','Noto Sans TC','Helvetica Neue',Helvetica,Arial,sans-serif; line-height:1.6; padding:28px 14px; -webkit-font-smoothing:antialiased; }
-  /* 置中窄欄；電腦最寬 700，手機自動滿版 */
-  .wrap{ max-width:700px; margin:0 auto; }
-  .card{ background:#fff; border:1px solid #dde3ea; border-radius:12px; box-shadow:0 6px 18px rgba(28,37,48,.05); padding:24px 22px; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; padding:20px 14px; color:#1e293b; line-height:1.6;
+        font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',Arial,sans-serif;
+        -webkit-font-smoothing:antialiased; background:transparent; }
+  .wrap{ max-width:900px; margin:0 auto; }
+  .lead{ margin:0 0 6px; font-size:15px; color:#1e293b; }
+  .sub{ margin:0 0 16px; font-size:13px; color:#64748b; }
 
-  .lead{ font-size:17px; font-weight:600; color:#1c2530; letter-spacing:.05em; margin:0 0 6px; }
-  .sub{ font-size:13px; color:#8a8f98; letter-spacing:.02em; margin:0 0 18px; }
+  .row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px; }
+  .row select,.row input{ flex:1 1 220px; min-width:0; padding:11px 12px; font-size:14px;
+        border:1px solid rgba(15,23,42,.22); border-radius:2px; background:#fff; color:#1e293b; }
+  .row input{ font-family:ui-monospace,Menlo,Consolas,monospace; text-transform:uppercase; letter-spacing:.06em; }
+  .row select:focus,.row input:focus{ outline:none; border-color:#1b305c; }
+  .row button{ flex:0 0 auto; padding:0 22px; border:0; border-radius:2px; cursor:pointer;
+        background:#1b305c; color:#fff; font-size:14px; font-weight:700; letter-spacing:.04em; }
+  .hint{ margin:-8px 0 18px; font-size:12px; color:#94a3b8; }
 
-  .row{ display:flex; gap:8px; flex-wrap:nowrap; margin-bottom:18px; }
-  .row input{ flex:1 1 auto; min-width:0; padding:11px; border:1px solid #c9d2dd; border-radius:7px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px; text-transform:uppercase; letter-spacing:.06em; }
-  .row input:focus{ outline:none; border-color:#2f4a6b; }
-  .row button{ flex:0 0 auto; background:#2f4a6b; color:#fff; border:none; border-radius:7px; padding:0 20px; font-size:14px; font-weight:600; letter-spacing:.04em; cursor:pointer; }
-  .row button:hover{ filter:brightness(1.08); }
-
-  /* 文件卡：橫向三欄（標籤 | 標題 | 說明）＋ 右側箭頭，整列可點 */
   .docs{ display:flex; flex-direction:column; gap:10px; }
-  .doc{ display:flex; align-items:flex-start; gap:14px; background:#f6f8fa; border:1px solid #dde3ea; border-radius:10px; padding:16px; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s; }
-  .doc:hover{ border-color:#2f4a6b; transform:translateY(-1px); }
-  .doc .badge{ flex:0 0 66px; text-align:center; font-size:11px; font-weight:700; letter-spacing:.04em; color:#2f4a6b; background:#eef2f6; padding:6px 0; border-radius:6px; }
-  .doc .ttl{ flex:0 0 92px; font-size:14px; font-weight:600; color:#1c2530; letter-spacing:.03em; white-space:nowrap; }
-  .doc .desc{ flex:1; min-width:0; font-size:13px; color:#8a8f98; line-height:1.8; }
-  .doc .arrow{ flex:0 0 auto; align-self:center; display:inline-flex; color:#2f4a6b; }
-  .doc .arrow svg{ width:14px; height:14px; }
-  .doc.off{ opacity:.5; pointer-events:none; }
-
-  /* 空狀態（未帶商品代碼時）*/
-  .empty{ display:none; font-size:14px; color:#8a8f98; line-height:1.9; text-align:center; padding:20px 6px 6px; }
-
-  @media(max-width:520px){
-    body{ padding:16px 10px; }
-    .wrap{ max-width:100%; }
-    .card{ padding:18px 14px; border-radius:10px; }
-    .row button{ padding:0 16px; }
-    /* 手機：標籤一列，標題＋說明掉到下一行，避免擠壓 */
-    .doc{ flex-wrap:wrap; padding:14px 13px; }
-    .doc .ttl{ flex:1 1 auto; }
-    .doc .desc{ flex:1 1 100%; }
-  }
+  .doc{ display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; padding:16px 18px;
+        text-decoration:none; color:inherit; background:#f8fafc;
+        border:1px solid rgba(15,23,42,.07); border-top:3px solid #1b305c; }
+  .doc:hover{ background:#f1f5f9; }
+  .doc .badge{ flex:0 0 auto; color:#94a3b8; font-size:12px; font-weight:700;
+        letter-spacing:.35em; text-transform:uppercase; }
+  .doc .ttl{ flex:0 0 auto; color:#1e293b; font-size:15px; font-weight:500; }
+  .doc .desc{ flex:1 1 240px; color:#475569; font-size:13px; }
+  .doc .arrow{ flex:0 0 auto; color:#1b305c; font-size:14px; font-weight:700; }
+  .doc.off{ opacity:.45; pointer-events:none; }
+  .empty{ display:none; padding:18px 6px; font-size:14px; color:#94a3b8; line-height:1.9; text-align:center; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="card">
-    <p class="lead">每一瓶皆對應一組化學指紋。</p>
-    <p class="sub">批次代碼,是調閱對應文件的識別碼。</p>
+  <p class="lead">每一瓶皆對應一組化學指紋。</p>
+  <p class="sub" id="sub">選擇瓶身標籤上的批號，即可調閱該批次文件。</p>
 
-    <div class="row">
-      <input id="b" type="text" placeholder="輸入產品批號">
-      <button id="go">查詢</button>
-    </div>
-
-    <div class="docs">
-      <a class="doc" id="lGc" target="_blank" rel="noopener">
-        <span class="badge">GC/MS</span>
-        <span class="ttl">氣相分析</span>
-        <span class="desc">呈現主要成分比例與化學特徵，協助專業使用者判讀每一批次的氣味輪廓。</span>
-        <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l6 6"/><path d="M11 6v5H6"/></svg></span>
-      </a>
-      <a class="doc" id="lMs" target="_blank" rel="noopener">
-        <span class="badge">MSDS</span>
-        <span class="ttl">安全資料</span>
-        <span class="desc">提供物理與化學特徵資訊，作為儲存、運輸與專業應用的安全參考。</span>
-        <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l6 6"/><path d="M11 6v5H6"/></svg></span>
-      </a>
-      <a class="doc" id="lTd" target="_blank" rel="noopener">
-        <span class="badge">TDS</span>
-        <span class="ttl">技術規格</span>
-        <span class="desc">包含產品識別與物性資料，以此呈現產品的一致性輪廓。</span>
-        <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l6 6"/><path d="M11 6v5H6"/></svg></span>
-      </a>
-    </div>
-
-    <p class="empty">請從商品頁的「批次成分文件查詢」進入，<br>即可調閱對應批次的 GC/MS、MSDS、TDS。</p>
+  <div class="row" id="row">
+    <select id="sel"><option value="">請選擇批號</option></select>
+    <input id="b" type="text" placeholder="輸入產品批號" hidden>
+    <button id="go" hidden>查詢</button>
   </div>
+  <p class="hint" id="hint" hidden></p>
+
+  <div class="docs" id="docs">
+    <a class="doc off" id="lGc" target="_blank" rel="noopener">
+      <span class="badge">GC/MS</span><span class="ttl">氣相分析</span>
+      <span class="desc">呈現主要成分比例與化學特徵，協助專業使用者判讀每一批次的氣味輪廓。</span>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="doc" id="lMs" target="_blank" rel="noopener">
+      <span class="badge">MSDS</span><span class="ttl">安全資料</span>
+      <span class="desc">提供物理與化學特徵資訊，作為儲存、運輸與專業應用的安全參考。</span>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="doc" id="lTd" target="_blank" rel="noopener">
+      <span class="badge">TDS</span><span class="ttl">技術規格</span>
+      <span class="desc">包含產品識別與物性資料，以此呈現產品的一致性輪廓。</span>
+      <span class="arrow">↗</span>
+    </a>
+  </div>
+
+  <p class="empty" id="empty">請從商品頁的「批次文件查詢」進入，<br>即可調閱對應批次的文件。</p>
 </div>
 
 <script>
-  /* ===== 公版設定點 ===== */
-  // 商品代碼自動偵測（依序嘗試）：
-  //   1) 連結網址帶 ?code=FLE047 → 直接用（入口卡片就是用這個帶）
-  //   2) 從來源頁網址 document.referrer 抓 FLEX/FLJ/FLK/FLE…代碼（備援）
-  //   3) 都讀不到 → 回傳空字串，顯示空狀態提示（不帶任何商品）
-  function detectCode(){
-    const q = new URLSearchParams(location.search).get('code');
-    if (q) return q.toUpperCase();
-    const m = (document.referrer || "").match(/FL[A-Z]+\d+/i);
-    if (m) return m[0].toUpperCase();
-    return "";   // 都讀不到 → 空狀態（顯示提示，不帶任何商品）
-  }
-  const CODE = detectCode();
-  const BASE = "https://www.florihana.com/en/module/axproductattachments/export";
-
-  // 系列判斷：FLH / FLV / FLM ＝ 第一份文件是 Analyse（分析報告）；其餘＝精油（GC/MS）
-  const IS_ANALYSE = /^FL[HVM]/.test(CODE);
-  const GC_TYPE    = IS_ANALYSE ? "Analyse" : "Chromatographies";
-
-  // 例外檔名表：只有「檔名非標準」的商品才需要在這裡登記。
-  // 標準規則 = MSDS:{代號}.pdf、TDS:{代號}FT.pdf，沒登記的商品自動套用，不必管。
-  //
-  // 怎麼新增例外（某商品 MSDS/TDS 點下去是空白或壞檔時）：
-  //  1. 到該商品 Florihana 頁面點 MSDS/TDS，複製網址 file= 後的完整檔名。
-  //  2. 照下面格式加一筆：代碼大寫、檔名整串照貼、各筆之間加逗號。
-  //  3. Commit，GitHub Pages 約 1 分鐘後生效。
-  //  只有一項例外就只寫那項，另一項省略 → 自動走標準規則。
-  const OVERRIDES = {
-    // （測試中：FLEX006 已移除，改由平台連結的 &msds=/&tds= 參數帶入）
-    // 要改回集中登記時，照這個格式加：
-    // "新商品代碼": { msds: "完整MSDS檔名.pdf", tds: "完整TDS檔名.pdf" },
-  };
-  // 例外檔名來源（優先序）：
-  //   ① 連結網址參數 msds=/tds=（直接寫在商品頁連結，不必動 GitHub）
-  //   ② OVERRIDES 例外表（登記在本檔）
-  //   ③ 都沒有 → 標準規則 代號.pdf / 代號FT.pdf
-  const _p = new URLSearchParams(location.search);
-  const _ov = OVERRIDES[CODE] || {};
-  const MSDS_FILE = _p.get('msds') || _ov.msds || "";
-  const TDS_FILE  = _p.get('tds')  || _ov.tds  || "";
-  /* ===================================== */
-
+(function(){
   const $ = id => document.getElementById(id);
+  const P = new URLSearchParams(location.search);
+
+  function detectCode(){
+    const q = P.get('code');
+    if (q) return q.toUpperCase();
+    const m = (document.referrer || '').match(/FL[A-Z]+\d+/i);
+    return m ? m[0].toUpperCase() : '';
+  }
+
+  const CODE       = detectCode();
+  const ONLY_AN    = (P.get('only') || '') === 'analysis';
+  const BASE       = 'https://www.florihana.com/en/module/axproductattachments/export';
+  const IS_ANALYSE = /^FL[HVM]/.test(CODE);          // 蒸餾液／植物油／浸泡油＝分析報告，其餘＝GC 圖譜
+  const GC_TYPE    = IS_ANALYSE ? 'Analyse' : 'Chromatographies';
+
+  let MSDS_FILE = P.get('msds') || '';
+  let TDS_FILE  = P.get('tds')  || '';
+
   function urls(batch){
     const c = encodeURIComponent(CODE);
     return {
-      gc: `${BASE}?type=${encodeURIComponent(GC_TYPE)}&file=${encodeURIComponent(CODE+batch+'.pdf')}&reference=${c}`,
-      ms: `${BASE}?type=${encodeURIComponent('Fiche de sécurité')}&file=${encodeURIComponent(MSDS_FILE || CODE+'.pdf')}&reference=${c}`,
-      td: `${BASE}?type=${encodeURIComponent('Fiche technique')}&file=${encodeURIComponent(TDS_FILE || CODE+'FT.pdf')}&reference=${c}`
+      gc: `${BASE}?type=${encodeURIComponent(GC_TYPE)}&file=${encodeURIComponent(CODE + batch + '.pdf')}&reference=${c}`,
+      ms: `${BASE}?type=${encodeURIComponent('Fiche de sécurité')}&file=${encodeURIComponent(MSDS_FILE || CODE + '.pdf')}&reference=${c}`,
+      td: `${BASE}?type=${encodeURIComponent('Fiche technique')}&file=${encodeURIComponent(TDS_FILE  || CODE + 'FT.pdf')}&reference=${c}`
     };
   }
-  function analyze(){
-    const batch = $('b').value.trim().toUpperCase();
-    $('b').value = batch;
+
+  /** 批號 DDMMYY+後綴 → 2026-06-19 · 190626TR */
+  function label(batch){
+    const m = /^(\d{2})(\d{2})(\d{2})/.exec(batch);
+    if (!m) return batch;
+    return `20${m[3]}-${m[2]}-${m[1]} · ${batch}`;
+  }
+
+  function apply(batch){
     const u = urls(batch);
-    // MSDS / TDS 只認商品代碼，永遠是原廠當前版，隨時可點
     $('lMs').href = u.ms;
     $('lTd').href = u.td;
-    // GC/MS 依批號組檔名；沒有批號就停用該卡片
-    if(batch){
+    if (batch){
       $('lGc').href = u.gc;
       $('lGc').classList.remove('off');
     } else {
@@ -151,24 +133,73 @@
       $('lGc').classList.add('off');
     }
   }
-  if (CODE) {
-    // FLH/FLV/FLM 系列：第一張卡由 GC/MS 改為 Analysis（分析報告）
-    if (IS_ANALYSE) {
-      $('lGc').querySelector('.badge').textContent = 'Analysis';
-      $('lGc').querySelector('.ttl').textContent   = '分析報告';
-      $('lGc').querySelector('.desc').textContent  = '每一批次對應的分析檢測報告。';
-    }
-    // 有商品代碼：正常啟用查詢
-    $('go').onclick = analyze;
-    $('b').addEventListener('keydown', e=>{ if(e.key==='Enter') analyze(); });
-    analyze(); // 載入：批號留空 → GC/MS 待輸入，MSDS/TDS 直接可用
-  } else {
-    // 無代碼：隱藏查詢與文件，顯示提示
-    document.querySelector('.sub').style.display  = 'none';
-    document.querySelector('.row').style.display  = 'none';
-    document.querySelector('.docs').style.display = 'none';
-    document.querySelector('.empty').style.display = 'block';
+
+  function enableManual(msg){
+    $('sel').hidden = true;
+    $('b').hidden = false;
+    $('go').hidden = false;
+    $('sub').textContent = '輸入瓶身標籤上的批號，即可調閱該批次文件。';
+    if (msg){ $('hint').textContent = msg; $('hint').hidden = false; }
+    const run = () => {
+      const v = $('b').value.trim().toUpperCase();
+      $('b').value = v;
+      apply(v);
+    };
+    $('go').onclick = run;
+    $('b').addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
   }
+
+  if (!CODE){
+    $('row').style.display = 'none';
+    $('docs').style.display = 'none';
+    $('sub').style.display = 'none';
+    $('empty').style.display = 'block';
+    return;
+  }
+
+  // 分析報告系列：第一張卡改標題
+  if (IS_ANALYSE){
+    $('lGc').querySelector('.badge').textContent = 'Analysis';
+    $('lGc').querySelector('.ttl').textContent   = '分析報告';
+    $('lGc').querySelector('.desc').textContent  = '該批次的原廠實驗室檢測數據。';
+  }
+  // only=analysis：商品頁已自行列出 MSDS／TDS 時，這裡只留分析報告
+  if (ONLY_AN){
+    $('lMs').style.display = 'none';
+    $('lTd').style.display = 'none';
+  }
+
+  apply('');   // 先讓 MSDS／TDS 可點
+
+  fetch('batches.json', { cache: 'no-cache' })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error('batches.json 讀取失敗')))
+    .then(data => {
+      const p = (data.products || {})[CODE];
+      const list = p ? (IS_ANALYSE ? p.analyse : p.gc) || [] : [];
+      if (p){
+        if (p.msds && !MSDS_FILE) MSDS_FILE = p.msds;
+        if (p.tds  && !TDS_FILE)  TDS_FILE  = p.tds;
+        apply('');
+      }
+      if (!list.length){ enableManual('此商品尚未同步批次清單，請直接輸入批號。'); return; }
+
+      const sel = $('sel');
+      for (const b of list){
+        const o = document.createElement('option');
+        o.value = b; o.textContent = label(b);
+        sel.appendChild(o);
+      }
+      const other = document.createElement('option');
+      other.value = '__manual__'; other.textContent = '找不到我的批號…';
+      sel.appendChild(other);
+
+      sel.onchange = () => {
+        if (sel.value === '__manual__'){ enableManual('請輸入瓶身標籤上的完整批號，例如 190626TR。'); return; }
+        apply(sel.value);
+      };
+    })
+    .catch(() => enableManual('批次清單暫時無法載入，請直接輸入批號。'));
+})();
 </script>
 </body>
 </html>
