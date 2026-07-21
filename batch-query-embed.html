@@ -114,9 +114,9 @@
     };
   }
 
-  /** 批號 DDMMYY+後綴 → 2026-06-19 · 190626TR */
+  /** 批號含 DDMMYY → 2026-06-19 · 190626TR；也吃 AF051119F 這種字母前綴 */
   function label(batch){
-    const m = /^(\d{2})(\d{2})(\d{2})/.exec(batch);
+    const m = /(\d{2})(\d{2})(\d{2})/.exec(batch);
     if (!m) return batch;
     return `20${m[3]}-${m[2]}-${m[1]} · ${batch}`;
   }
