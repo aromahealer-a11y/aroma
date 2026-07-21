@@ -7,8 +7,12 @@
 FLV003
 FLV049
 
-# ── 芳香蒸餾液 FLH ──
+# ── 浸泡油 FLM ──
+FLM001
+
+# ── 純露 FLH ──
 FLH002
 
 # ── CO2 萃取 FLEX ──
 FLEX006
+FLE047
