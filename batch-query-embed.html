@@ -13,6 +13,8 @@
   網址參數：
     code=FLV003        商品代碼（必要；未帶則嘗試從 referrer 猜，再不行顯示提示）
     only=analysis      只顯示分析報告／GC 那張卡（商品頁已自行列出 MSDS、TDS 時用）
+    mode=card          卡片模式：去掉標題與外框，只留「小標＋下拉＋開啟 PDF」，
+                       讓商品頁可以把它當成一張卡跟 MSDS／TDS 並排（自動含 only=analysis）
     msds=檔名.pdf      例外檔名（檔名非標準規則時才需要）
     tds=檔名.pdf       同上
 
@@ -49,6 +51,23 @@
   .doc .arrow{ flex:0 0 auto; color:#1b305c; font-size:14px; font-weight:700; }
   .doc.off{ opacity:.45; pointer-events:none; }
   .empty{ display:none; padding:18px 6px; font-size:14px; color:#94a3b8; line-height:1.9; text-align:center; }
+
+  /* 卡片模式：外框與底色由商品頁那格負責，這裡只排內容，讓它能跟 MSDS／TDS 並排 */
+  body.card{ padding:28px 26px; }
+  body.card .wrap{ max-width:none; }
+  body.card .lead,body.card .sub{ display:none; }
+  body.card .eyebrow{ margin:0 0 14px; color:#94a3b8; font-size:12px; font-weight:700;
+        letter-spacing:.35em; line-height:1.5; text-transform:uppercase; }
+  body.card .cdesc{ margin:0 0 16px; color:#475569; font-size:14px; line-height:1.9; }
+  body.card .row{ margin-bottom:16px; }
+  body.card .row select,body.card .row input{ flex:1 1 100%; }
+  body.card .doc{ display:inline-flex; padding:0; gap:0; background:none; border:0; }
+  body.card .doc:hover{ background:none; }
+  body.card .doc .badge,body.card .doc .ttl,body.card .doc .desc{ display:none; }
+  body.card .doc .arrow{ padding-bottom:2px; border-bottom:2px solid #1b305c;
+        font-size:15px; font-weight:700; letter-spacing:.04em; }
+  body.card .doc.off{ opacity:.35; }
+  body.card .hint{ margin:-8px 0 14px; }
 </style>
 </head>
 <body>
@@ -97,7 +116,8 @@
   }
 
   const CODE       = detectCode();
-  const ONLY_AN    = (P.get('only') || '') === 'analysis';
+  const CARD       = (P.get('mode') || '') === 'card';
+  const ONLY_AN    = CARD || (P.get('only') || '') === 'analysis';
   const BASE       = 'https://www.florihana.com/en/module/axproductattachments/export';
   const IS_ANALYSE = /^FL[HVM]/.test(CODE);          // 蒸餾液／植物油／浸泡油＝分析報告，其餘＝GC 圖譜
   const GC_TYPE    = IS_ANALYSE ? 'Analyse' : 'Chromatographies';
@@ -167,6 +187,21 @@
   if (ONLY_AN){
     $('lMs').style.display = 'none';
     $('lTd').style.display = 'none';
+  }
+
+  // 卡片模式：改成「小標＋說明＋下拉＋開啟 PDF」，外框由商品頁畫
+  if (CARD){
+    document.body.classList.add('card');
+    const wrap = document.querySelector('.wrap');
+    const eb = document.createElement('div');
+    eb.className = 'eyebrow';
+    eb.textContent = IS_ANALYSE ? 'Analysis' : 'GC/MS';
+    const de = document.createElement('div');
+    de.className = 'cdesc';
+    de.textContent = IS_ANALYSE ? '批次分析報告，選擇瓶身批號' : '批次 GC/MS 圖譜，選擇瓶身批號';
+    wrap.insertBefore(de, $('row'));
+    wrap.insertBefore(eb, de);
+    $('lGc').querySelector('.arrow').textContent = '開啟 PDF ↗';
   }
 
   apply('');   // 先讓 MSDS／TDS 可點
