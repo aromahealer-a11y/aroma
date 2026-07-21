@@ -52,13 +52,10 @@
   .doc.off{ opacity:.45; pointer-events:none; }
   .empty{ display:none; padding:18px 6px; font-size:14px; color:#94a3b8; line-height:1.9; text-align:center; }
 
-  /* 卡片模式：外框與底色由商品頁那格負責，這裡只排內容，讓它能跟 MSDS／TDS 並排 */
-  body.card{ padding:28px 26px; }
+  /* 卡片模式：外框、小標、說明文案都由商品頁那一格負責，這裡只留下拉與連結 */
+  body.card{ padding:0; }
   body.card .wrap{ max-width:none; }
   body.card .lead,body.card .sub{ display:none; }
-  body.card .eyebrow{ margin:0 0 14px; color:#94a3b8; font-size:12px; font-weight:700;
-        letter-spacing:.35em; line-height:1.5; text-transform:uppercase; }
-  body.card .cdesc{ margin:0 0 16px; color:#475569; font-size:14px; line-height:1.9; }
   body.card .row{ margin-bottom:16px; }
   body.card .row select,body.card .row input{ flex:1 1 100%; }
   body.card .doc{ display:inline-flex; padding:0; gap:0; background:none; border:0; }
@@ -189,18 +186,10 @@
     $('lTd').style.display = 'none';
   }
 
-  // 卡片模式：改成「小標＋說明＋下拉＋開啟 PDF」，外框由商品頁畫
+  // 卡片模式：只留「下拉選單＋開啟 PDF」，小標與說明文案由商品頁那一格自己寫，
+  // 這樣三張卡的文字風格由商品頁統一掌握，widget 不再插手文案。
   if (CARD){
     document.body.classList.add('card');
-    const wrap = document.querySelector('.wrap');
-    const eb = document.createElement('div');
-    eb.className = 'eyebrow';
-    eb.textContent = IS_ANALYSE ? 'Analysis' : 'GC/MS';
-    const de = document.createElement('div');
-    de.className = 'cdesc';
-    de.textContent = IS_ANALYSE ? '批次分析報告，選擇瓶身批號' : '批次 GC/MS 圖譜，選擇瓶身批號';
-    wrap.insertBefore(de, $('row'));
-    wrap.insertBefore(eb, de);
     $('lGc').querySelector('.arrow').textContent = '開啟 PDF ↗';
   }
 
