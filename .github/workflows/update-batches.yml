@@ -1,15 +1,14 @@
 name: 更新批次文件清單
 
-# 平常不自動跑。進貨後手動執行，在 codes 欄填入該次進貨的商品代碼即可，
-# 只會抓那幾頁（幾秒完成，對原廠站幾乎沒有負擔）。
-# 排程只留每半年一次的全掃當安全網，時間選在法國深夜。
+# 資料不常變動，所以只在每年 1/1、7/1 各全掃一次（全部商品）。
+# 進貨後想立刻更新某項：Run workflow 在 codes 欄填代碼，只抓那幾項。
 on:
   schedule:
-    - cron: '0 2 1 1,7 *'    # 每年 1/1 與 7/1 UTC 02:00 ＝ 法國凌晨 3～4 點
+    - cron: '0 2 1 1,7 *'    # 每年 1/1、7/1 UTC 02:00 ＝ 法國凌晨 3～4 點
   workflow_dispatch:
     inputs:
       codes:
-        description: '只更新這幾項（空白＝全部）。例：FLV003 FLE047 FLH002'
+        description: '只更新這幾項（空白＝全部）。例：FLV003 FLE047'
         required: false
         default: ''
 
