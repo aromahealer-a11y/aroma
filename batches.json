@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-31T13:17:12.827Z",
+ "updated": "2026-07-31T13:21:42.942Z",
  "products": {
   "FLM001": {
    "url": "https://www.florihana.com/en/macerated-oils/852-arnica-organic-flm001.html",
@@ -4611,6 +4611,295 @@
    ],
    "msds": "FLE265.pdf",
    "tds": "FLE265FT.pdf"
+  },
+  "FLJ001": {
+   "url": "https://www.florihana.com/en/essential-oils/1751-yuzu.html",
+   "analyse": [],
+   "gc": [
+    "BC090925JP",
+    "BC260724JP",
+    "BC080823JP",
+    "R290622JP",
+    "R060721JP",
+    "R160320JP",
+    "R110220JP"
+   ],
+   "msds": "FLJ001.pdf",
+   "tds": "FLJ001FT.pdf"
+  },
+  "FLJ002": {
+   "url": "https://www.florihana.com/en/essential-oils/1752-hinoki.html",
+   "analyse": [],
+   "gc": [
+    "R140126JP",
+    "R220525JP",
+    "R091024JP",
+    "R210323JP",
+    "R171122JP",
+    "R090322JP",
+    "R060721JP",
+    "R231120JP",
+    "R221020JP",
+    "R160320JP",
+    "R110220JP"
+   ],
+   "msds": "FLJ002.pdf",
+   "tds": "FLJ002FT.pdf"
+  },
+  "FLJ006": {
+   "url": "https://www.florihana.com/en/essential-oils/1785-palo-santo.html",
+   "analyse": [],
+   "gc": [
+    "AO120126EC",
+    "AO041224EC",
+    "AO270622EC",
+    "AO120421EC",
+    "AO031220EC",
+    "AO171120EC",
+    "AO101120EC"
+   ],
+   "msds": "FLJ006.pdf",
+   "tds": "FLJ006 FT.pdf"
+  },
+  "FLJ007": {
+   "url": "https://www.florihana.com/en/essential-oils/1806-magnolia-.html",
+   "analyse": [],
+   "gc": [
+    "BF251124CN",
+    "BF040923CN",
+    "H250722CN",
+    "H240322CN",
+    "H041121CN",
+    "H200921CN"
+   ],
+   "msds": "FLJ007.pdf",
+   "tds": "FLJ007FT.pdf"
+  },
+  "FLJ009": {
+   "url": "https://www.florihana.com/en/essential-oils/1815-anise.html",
+   "analyse": [],
+   "gc": [
+    "E241125ES",
+    "E190824ES",
+    "E231122ES",
+    "E180522ES"
+   ],
+   "msds": "FLJ009.pdf",
+   "tds": "FLJ009FT.pdf"
+  },
+  "FLJ013": {
+   "url": "https://www.florihana.com/en/absolutes/1827-frangipani.html",
+   "analyse": [],
+   "gc": [
+    "I210525IN",
+    "K050822IN"
+   ],
+   "msds": "FLJ013.pdf",
+   "tds": "FLJ013FT.pdf"
+  },
+  "FLJ015": {
+   "url": "https://www.florihana.com/en/essential-oils/619-camphre-de-chine.html",
+   "analyse": [],
+   "gc": [
+    "AC120526CN",
+    "AC240525CN",
+    "AC200324CN",
+    "AC060923CN",
+    "AC240123CN",
+    "AC040422CN",
+    "AC130421CN",
+    "AC250221CN",
+    "AC250320CN",
+    "AC181019CN",
+    "AC230819CN",
+    "S280918CN"
+   ],
+   "msds": "FLJ015.pdf",
+   "tds": "FLJ015FT.pdf"
+  },
+  "FLJ017": {
+   "url": "https://www.florihana.com/en/absolutes/1822-feve-de-tonka-absolue-.html",
+   "analyse": [],
+   "gc": [
+    "K230224BR",
+    "K110723BR",
+    "080323BR",
+    "200123F"
+   ],
+   "msds": "FLJ017.pdf",
+   "tds": "FLJ017FT.pdf"
+  },
+  "FLJ018": {
+   "url": "https://www.florihana.com/en/essential-oils/1828-fragonia.html",
+   "analyse": [],
+   "gc": [
+    "H040325AU",
+    "H130225AU",
+    "H241023AU",
+    "H180923AU",
+    "H020823AU",
+    "H250723AU"
+   ],
+   "msds": "FLJ018.pdf",
+   "tds": "FLJ018FT.pdf"
+  },
+  "FLJ022": {
+   "url": "https://www.florihana.com/en/essential-oils/1868-sacred-frankincense.html",
+   "analyse": [],
+   "gc": [
+    "BH260526OM",
+    "BH161225OM"
+   ],
+   "msds": "FLJ022.pdf",
+   "tds": "FLJ022FT.pdf"
+  },
+  "FLJ023": {
+   "url": "https://www.florihana.com/en/essential-oils/627-elemi.html",
+   "analyse": [],
+   "gc": [
+    "C210225PH",
+    "C260124PH",
+    "C270423PH",
+    "M041121PH",
+    "M100321PH",
+    "M160920PH",
+    "M061219PH",
+    "M190319PH",
+    "M260718PH",
+    "M250718PH"
+   ],
+   "msds": "FLJ023.pdf",
+   "tds": "FLJ023FT.pdf"
+  },
+  "FLJ057": {
+   "url": "https://www.florihana.com/en/essential-oils/643-valeriane.html",
+   "analyse": [],
+   "gc": [
+    "BF140824CN",
+    "BF010824CN",
+    "S150222MA",
+    "S270619MA"
+   ],
+   "msds": "FLJ057.pdf",
+   "tds": "FLJ057FT.pdf"
+  },
+  "FLJ081": {
+   "url": "https://www.florihana.com/en/essential-oils/647-celeri-semence.html",
+   "analyse": [],
+   "gc": [
+    "H230625IN",
+    "H211123IN",
+    "K251122IN",
+    "K270919IN",
+    "K270917IN"
+   ],
+   "msds": "FLJ081.pdf",
+   "tds": "FLJ081FT.pdf"
+  },
+  "FLJ118": {
+   "url": "https://www.florihana.com/en/essential-oils/651-manuka.html",
+   "analyse": [],
+   "gc": [
+    "AZ050625NZ",
+    "AZ070624AU",
+    "AZ260523AU",
+    "B300922NZ",
+    "B290622NZ",
+    "B280122NZ",
+    "B150221AU",
+    "B291018AU",
+    "B280518AU"
+   ],
+   "msds": "FLJ118.pdf",
+   "tds": "FLJ118FT.pdf"
+  },
+  "FLJ130": {
+   "url": "https://www.florihana.com/en/absolutes/655-jasmine.html",
+   "analyse": [],
+   "gc": [
+    "I160425IN",
+    "I310724IN",
+    "AZ230323EG",
+    "AZ090223EG",
+    "I170123IN",
+    "K050122IN",
+    "I260521IN",
+    "I150221IN",
+    "I020919IN"
+   ],
+   "msds": "FLJ130.pdf",
+   "tds": "FLJ130FT.pdf"
+  },
+  "FLJ131": {
+   "url": "https://www.florihana.com/en/absolutes/660-rose.html",
+   "analyse": [],
+   "gc": [
+    "AV290925BG",
+    "AV120924BG",
+    "AG030823MA",
+    "D020322BG",
+    "D250821BG",
+    "D210820BG",
+    "D170919BG",
+    "D060818BG"
+   ],
+   "msds": "FLJ131.pdf",
+   "tds": "FLJ131FT.pdf"
+  },
+  "FLJ132": {
+   "url": "https://www.florihana.com/en/absolutes/665-violet.html",
+   "analyse": [],
+   "gc": [
+    "BD310326EG",
+    "BD170125EG",
+    "BD020623EG",
+    "K030322EG",
+    "K280421EG",
+    "K160920EG",
+    "K190918EG"
+   ],
+   "msds": "FLJ132.pdf",
+   "tds": "FLJ132FT.pdf"
+  },
+  "FLJ133": {
+   "url": "https://www.florihana.com/en/absolutes/670-mimosa.html",
+   "analyse": [],
+   "gc": [
+    "I210525IN",
+    "K111024MA",
+    "K030522F",
+    "K010921F",
+    "K230919MA"
+   ],
+   "msds": "FLJ133.pdf",
+   "tds": "FLJ133FT.pdf"
+  },
+  "FLJ137": {
+   "url": "https://www.florihana.com/en/absolutes/675-jasmine-sambac.html",
+   "analyse": [],
+   "gc": [
+    "I020625IN",
+    "I160425IN",
+    "I270923IN",
+    "I170123IN",
+    "I040522IN",
+    "I260521IN",
+    "I150221IN",
+    "I020919IN",
+    "I260918IN"
+   ],
+   "msds": "FLJ137.pdf",
+   "tds": "FLJ137FT.pdf"
+  },
+  "FLJ138": {
+   "url": "https://www.florihana.com/en/absolutes/1829-rose-centifolia-absolute.html",
+   "analyse": [],
+   "gc": [
+    "S240226MA",
+    "AG250723MA"
+   ],
+   "msds": "FLJ138.pdf",
+   "tds": "FLJ138FT.pdf"
   }
  }
 }
