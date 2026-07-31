@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-29T02:00:14.248Z",
+ "updated": "2026-07-31T12:47:32.333Z",
  "products": {
   "FLM001": {
    "url": "https://www.florihana.com/en/macerated-oils/852-arnica-organic-flm001.html",
@@ -1696,26 +1696,6 @@
    "msds": "FLEX006 CAFE TORIFIE BIO FDS 2026.pdf",
    "tds": "FLEX006 CAFE TORIFIE BIO FT 2026.pdf"
   },
-  "FLE047": {
-   "url": "https://www.florihana.com/en/essential-oils/247-lavender-vera-organic.html",
-   "analyse": [],
-   "gc": [
-    "AZ161025F",
-    "AZ041024F",
-    "AZ180923F",
-    "AW070922F",
-    "AF160921F",
-    "AF180121F",
-    "AF200820F",
-    "AK190520F",
-    "AF051119F",
-    "B191118F",
-    "B170918F",
-    "B280518F"
-   ],
-   "msds": "FLE047.pdf",
-   "tds": "FLE047FT.pdf"
-  },
   "FLEX010": {
    "url": "https://www.florihana.com/en/CO2-extracts/1840-co2extract-organic-rosehip.html",
    "analyse": [],
@@ -1744,6 +1724,45 @@
    ],
    "msds": "FLEX051.pdf",
    "tds": "FLEX051FT.pdf"
+  },
+  "FLE047": {
+   "url": "https://www.florihana.com/en/essential-oils/247-lavender-vera-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ161025F",
+    "AZ041024F",
+    "AZ180923F",
+    "AW070922F",
+    "AF160921F",
+    "AF180121F",
+    "AF200820F",
+    "AK190520F",
+    "AF051119F",
+    "B191118F",
+    "B170918F",
+    "B280518F"
+   ],
+   "msds": "FLE047.pdf",
+   "tds": "FLE047FT.pdf"
+  },
+  "FLEX096": {
+   "url": "https://www.florihana.com/en/CO2-extracts/1835-co2-extract-ylang-ylang-.html",
+   "analyse": [],
+   "gc": [
+    "250923F"
+   ],
+   "msds": "FLEX096.pdf",
+   "tds": "FLEX096FT.pdf"
+  },
+  "FLEX097": {
+   "url": "https://www.florihana.com/en/CO2-extracts/1834-extract-co2-lemon-verbena-organic-.html",
+   "analyse": [],
+   "gc": [
+    "100823F",
+    "260623F"
+   ],
+   "msds": "FLEX097.pdf",
+   "tds": "FLEX097FT.pdf"
   }
  }
 }
