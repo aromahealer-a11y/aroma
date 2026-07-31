@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-31T13:12:51.976Z",
+ "updated": "2026-07-31T13:17:12.827Z",
  "products": {
   "FLM001": {
    "url": "https://www.florihana.com/en/macerated-oils/852-arnica-organic-flm001.html",
@@ -2756,26 +2756,6 @@
    "msds": "FLEX097.pdf",
    "tds": "FLEX097FT.pdf"
   },
-  "FLE047": {
-   "url": "https://www.florihana.com/en/essential-oils/247-lavender-vera-organic.html",
-   "analyse": [],
-   "gc": [
-    "AZ161025F",
-    "AZ041024F",
-    "AZ180923F",
-    "AW070922F",
-    "AF160921F",
-    "AF180121F",
-    "AF200820F",
-    "AK190520F",
-    "AF051119F",
-    "B191118F",
-    "B170918F",
-    "B280518F"
-   ],
-   "msds": "FLE047.pdf",
-   "tds": "FLE047FT.pdf"
-  },
   "FLE001": {
    "url": "https://www.florihana.com/en/essential-oils/1776-bois-de-santal-bio.html",
    "analyse": [],
@@ -3395,6 +3375,26 @@
    "msds": "FLE046.pdf",
    "tds": "FLE046FT.pdf"
   },
+  "FLE047": {
+   "url": "https://www.florihana.com/en/essential-oils/247-lavender-vera-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ161025F",
+    "AZ041024F",
+    "AZ180923F",
+    "AW070922F",
+    "AF160921F",
+    "AF180121F",
+    "AF200820F",
+    "AK190520F",
+    "AF051119F",
+    "B191118F",
+    "B170918F",
+    "B280518F"
+   ],
+   "msds": "FLE047.pdf",
+   "tds": "FLE047FT.pdf"
+  },
   "FLE048": {
    "url": "https://www.florihana.com/en/essential-oils/251-lavandin-super-organic.html",
    "analyse": [],
@@ -3699,6 +3699,918 @@
    ],
    "msds": "FLE071.pdf",
    "tds": "FLE071FT.pdf"
+  },
+  "FLE073": {
+   "url": "https://www.florihana.com/en/essential-oils/342-ravintsara-organic.html",
+   "analyse": [],
+   "gc": [
+    "AM210723MG",
+    "R070222MG",
+    "R160320MG",
+    "R120220MG",
+    "R110220MG",
+    "R050220MG",
+    "R090719MG",
+    "B300818MG"
+   ],
+   "msds": "FLE073.pdf",
+   "tds": "FLE073FT.pdf"
+  },
+  "FLE074": {
+   "url": "https://www.florihana.com/en/essential-oils/346-rosemary-cineol-organic.html",
+   "analyse": [],
+   "gc": [
+    "S101225MA",
+    "S130324MA",
+    "S160522MA",
+    "S280721MA",
+    "S190121MA",
+    "S200420MA",
+    "S151119MA",
+    "H220219MA"
+   ],
+   "msds": "FLE074.pdf",
+   "tds": "FLE074FT.pdf"
+  },
+  "FLE075": {
+   "url": "https://www.florihana.com/en/essential-oils/350-rosemary-camphor-organic.html",
+   "analyse": [],
+   "gc": [
+    "E241125ES",
+    "E190824ES",
+    "E140223ES",
+    "E270721ES",
+    "AC300120ES",
+    "B280917ES"
+   ],
+   "msds": "FLE075.pdf",
+   "tds": "FLE075FT.pdf"
+  },
+  "FLE076": {
+   "url": "https://www.florihana.com/en/essential-oils/354-rosemary-verbenone-organic.html",
+   "analyse": [],
+   "gc": [
+    "F051225F",
+    "F100625F",
+    "F170524F",
+    "F221123F",
+    "F070622F",
+    "F250522F",
+    "F100621F",
+    "F030620F",
+    "B051219ZA",
+    "F300419F",
+    "F150419F",
+    "B150219ZA",
+    "F111218F",
+    "F310718F"
+   ],
+   "msds": "FLE076.pdf",
+   "tds": "FLE076FT.pdf"
+  },
+  "FLE077": {
+   "url": "https://www.florihana.com/en/essential-oils/358-rose-otto-organic.html",
+   "analyse": [],
+   "gc": [
+    "Q301025BG",
+    "Q100125BG",
+    "Q101024BG",
+    "AV020823BG",
+    "AV160822BG",
+    "D210820BG",
+    "Q300719BG",
+    "Q231017BG"
+   ],
+   "msds": "FLE077.pdf",
+   "tds": "FLE077FT.pdf"
+  },
+  "FLE080": {
+   "url": "https://www.florihana.com/en/essential-oils/363-silver-fir-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ040425F",
+    "U040823BG",
+    "U131022BG",
+    "U290421BG",
+    "AD051219BG",
+    "U150219BG",
+    "U121118BG"
+   ],
+   "msds": "FLE080.pdf",
+   "tds": "FLE080FT.pdf"
+  },
+  "FLE081": {
+   "url": "https://www.florihana.com/en/essential-oils/367-giant-fir-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ130126F",
+    "AZ050724F",
+    "B271117F"
+   ],
+   "msds": "FLE081.pdf",
+   "tds": "FLE081FT.pdf"
+  },
+  "FLE082": {
+   "url": "https://www.florihana.com/en/essential-oils/371-savory-organic.html",
+   "analyse": [],
+   "gc": [
+    "E210225ES",
+    "E100122ES",
+    "L040121ES",
+    "E090420ES",
+    "AC280120ES",
+    "B030419ES",
+    "B250918ES",
+    "B280518ES"
+   ],
+   "msds": "FLE082.pdf",
+   "tds": "FLE082FT.pdf"
+  },
+  "FLE084": {
+   "url": "https://www.florihana.com/en/essential-oils/684-sage-organic.html",
+   "analyse": [],
+   "gc": [
+    "E100625ES",
+    "E210923ES",
+    "E141022ES",
+    "E310122ES",
+    "E270421ES",
+    "E250321ES",
+    "B040220ES",
+    "B121118AL"
+   ],
+   "msds": "FLE084.pdf",
+   "tds": "FLE084FT.pdf"
+  },
+  "FLE085": {
+   "url": "https://www.florihana.com/en/essential-oils/375-clary-sage-organic.html",
+   "analyse": [],
+   "gc": [
+    "P201125F",
+    "P290125F",
+    "P251023F",
+    "AW070922F",
+    "P030921F",
+    "P011020F",
+    "AH170320F",
+    "B250918F"
+   ],
+   "msds": "FLE085.pdf",
+   "tds": "FLE085FT.pdf"
+  },
+  "FLE090": {
+   "url": "https://www.florihana.com/en/essential-oils/395-thyme-borneol-organic.html",
+   "analyse": [],
+   "gc": [
+    "S100225MA",
+    "S130324MA",
+    "S281022MA",
+    "H131221MA",
+    "H301020MA",
+    "H220520MA",
+    "H080819MA",
+    "H310718MA"
+   ],
+   "msds": "FLE090.pdf",
+   "tds": "FLE090FT.pdf"
+  },
+  "FLE091": {
+   "url": "https://www.florihana.com/en/essential-oils/399-thyme-thymol-organic.html",
+   "analyse": [],
+   "gc": [
+    "E150125ES",
+    "L020424ES",
+    "E231122ES",
+    "E131021ES",
+    "L180320ES",
+    "L050220ES",
+    "L121018ES"
+   ],
+   "msds": "FLE091.pdf",
+   "tds": "FLE091FT.pdf"
+  },
+  "FLE093": {
+   "url": "https://www.florihana.com/en/essential-oils/407-thyme-linalool-organic.html",
+   "analyse": [],
+   "gc": [
+    "E141025ES",
+    "L291124ES",
+    "L131123ES",
+    "L270223ES",
+    "L170222ES",
+    "E181121ES",
+    "E140920ES",
+    "E030320ES",
+    "L170919ES",
+    "B230419ES",
+    "L280818ES"
+   ],
+   "msds": "FLE093.pdf",
+   "tds": "FLE093FT.pdf"
+  },
+  "FLE094": {
+   "url": "https://www.florihana.com/en/essential-oils/411-lemon-verbena-organic.html",
+   "analyse": [],
+   "gc": [
+    "H300123MA",
+    "-050822F",
+    "H021121MA",
+    "H090221MA",
+    "H301020MA",
+    "H011019MA",
+    "H231116MA"
+   ],
+   "msds": "FLE094.pdf",
+   "tds": "FLE094FT.pdf"
+  },
+  "FLE095": {
+   "url": "https://www.florihana.com/en/essential-oils/416-vetiver-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ130126MG",
+    "AZ281025MG",
+    "AZ110325MG",
+    "AZ040225MG",
+    "AZ070624MG",
+    "AZ260124MG",
+    "AZ091023MG",
+    "AZ080923MG",
+    "S170123MG",
+    "S211122MG",
+    "B170222CI",
+    "B291121CI",
+    "B250521CI",
+    "B150221CI",
+    "P220520MG",
+    "G140120HT",
+    "M061219MG",
+    "C010319HAI"
+   ],
+   "msds": "FLE095.pdf",
+   "tds": "FLE095FT.pdf"
+  },
+  "FLE096": {
+   "url": "https://www.florihana.com/en/essential-oils/420-ylang-ylang-complete-organic.html",
+   "analyse": [],
+   "gc": [
+    "AP281125MG",
+    "AP291024MG",
+    "AP091024MG",
+    "AP210223MG",
+    "AP250122MG",
+    "AP050121MG",
+    "B021219MG",
+    "B300818MG"
+   ],
+   "msds": "FLE096.pdf",
+   "tds": "FLE096FT.pdf"
+  },
+  "FLE098": {
+   "url": "https://www.florihana.com/en/essential-oils/424-patchouli-organic.html",
+   "analyse": [],
+   "gc": [
+    "AM230226MG",
+    "AM240624MG",
+    "H280923MG",
+    "S060223MG",
+    "H290422IN",
+    "H271021IN",
+    "B190421ID",
+    "B270820RW",
+    "B150720RW",
+    "H160419IN",
+    "B121118LK",
+    "B300718LK"
+   ],
+   "msds": "FLE098.pdf",
+   "tds": "FLE098FT.pdf"
+  },
+  "FLE101": {
+   "url": "https://www.florihana.com/en/essential-oils/432-cinnamon-bark-organic.html",
+   "analyse": [],
+   "gc": [
+    "H231024LK",
+    "H060723LK",
+    "H020222LK",
+    "B201021LK",
+    "H180321LK",
+    "H120121LK",
+    "H011020LK",
+    "P250520LK",
+    "H270320LK",
+    "H111219LK",
+    "B070319LK",
+    "B010618MG",
+    "B090318MG"
+   ],
+   "msds": "FLE101.pdf",
+   "tds": "FLE101FT.pdf"
+  },
+  "FLE104": {
+   "url": "https://www.florihana.com/en/essential-oils/444-inula-organic.html",
+   "analyse": [],
+   "gc": [
+    "F080125F",
+    "F221123F",
+    "F051222F",
+    "F151121F",
+    "F171120F",
+    "F181119F",
+    "F121118F"
+   ],
+   "msds": "FLE104.pdf",
+   "tds": "FLE104FT.pdf"
+  },
+  "FLE105": {
+   "url": "https://www.florihana.com/en/essential-oils/449-mastic-tree-organic.html",
+   "analyse": [],
+   "gc": [
+    "S100225MA",
+    "S280723MA",
+    "S150222MA",
+    "S300421MA",
+    "S200420MA",
+    "H181218MA",
+    "H111018MA",
+    "B180118MA"
+   ],
+   "msds": "FLE105.pdf",
+   "tds": "FLE105FT.pdf"
+  },
+  "FLE106": {
+   "url": "https://www.florihana.com/en/essential-oils/454-palmarosa-organic.html",
+   "analyse": [],
+   "gc": [
+    "AC111225NP",
+    "BE071024IN",
+    "H130623IN",
+    "H070922IN",
+    "H270521IN",
+    "B270820NP",
+    "AC300120IN",
+    "B080119NP"
+   ],
+   "msds": "FLE106.pdf",
+   "tds": "FLE106FT.pdf"
+  },
+  "FLE111": {
+   "url": "https://www.florihana.com/en/essential-oils/474-juniper-montana-organic.html",
+   "analyse": [],
+   "gc": [
+    "F051225F",
+    "F080125F",
+    "F211123F",
+    "F051222F",
+    "F151121F",
+    "F171120F",
+    "F181119F",
+    "F121118F",
+    "F050318F"
+   ],
+   "msds": "FLE111.pdf",
+   "tds": "FLE111FT.pdf"
+  },
+  "FLE112": {
+   "url": "https://www.florihana.com/en/essential-oils/478-lavender-stoechas-organic.html",
+   "analyse": [],
+   "gc": [
+    "E270623ES",
+    "AE261022ES",
+    "AE131221ES",
+    "AE121020ES",
+    "L050819ES",
+    "L121018ES"
+   ],
+   "msds": "FLE112.pdf",
+   "tds": "FLE112FT.pdf"
+  },
+  "FLE113": {
+   "url": "https://www.florihana.com/en/essential-oils/1441-thym-thujanol.html",
+   "analyse": [],
+   "gc": [
+    "J071025F",
+    "AZ050724F",
+    "AW270722F"
+   ],
+   "msds": "FLE113.pdf",
+   "tds": "FLE113FT.pdf"
+  },
+  "FLE115": {
+   "url": "https://www.florihana.com/en/essential-oils/486-ginger-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ281025MG",
+    "AZ210725MG",
+    "AJ300823MG",
+    "AJ230522MG",
+    "AJ220522MG",
+    "P020421MG",
+    "P151220MG",
+    "G070420CI",
+    "G180320CI",
+    "G270918CI",
+    "P090118MG"
+   ],
+   "msds": "FLE115.pdf",
+   "tds": "FLE115FT.pdf"
+  },
+  "FLE116": {
+   "url": "https://www.florihana.com/en/essential-oils/490-ylang-ylang-extra-organic.html",
+   "analyse": [],
+   "gc": [
+    "AP270225MG",
+    "AP190723MG",
+    "AP041022MG",
+    "AP250122MG",
+    "AP261021MG",
+    "AP110321MG",
+    "M211119MG",
+    "M020419MG",
+    "M291018MG",
+    "M150118MG"
+   ],
+   "msds": "FLE116.pdf",
+   "tds": "FLE116FT.pdf"
+  },
+  "FLE118": {
+   "url": "https://www.florihana.com/en/essential-oils/494-cinnamon-leaf-organic.html",
+   "analyse": [],
+   "gc": [
+    "A190126MG",
+    "AZ131124LK",
+    "B160224LK",
+    "B040723LK",
+    "B211122LK",
+    "B060522LK",
+    "B201021LK",
+    "B050321LK",
+    "B140420LK",
+    "B130220LK"
+   ],
+   "msds": "FLE118.pdf",
+   "tds": "FLE118FT.pdf"
+  },
+  "FLE119": {
+   "url": "https://www.florihana.com/en/essential-oils/498-spearmint-organic.html",
+   "analyse": [],
+   "gc": [
+    "X290725IN",
+    "X251124IN",
+    "BE070623IN",
+    "B260722IN",
+    "X290921IN",
+    "X031220IN",
+    "X280120IN",
+    "X211118IN",
+    "X201118IN"
+   ],
+   "msds": "FLE119.pdf",
+   "tds": "FLE119FT.pdf"
+  },
+  "FLE121": {
+   "url": "https://www.florihana.com/en/essential-oils/1794-turmeric-organic.html",
+   "analyse": [],
+   "gc": [
+    "AM281125MG",
+    "AM061223MG",
+    "AZ311023MG",
+    "AM240222MG",
+    "AM050521MG"
+   ],
+   "msds": "FLE121.pdf",
+   "tds": "FLE121FT.pdf"
+  },
+  "FLE122": {
+   "url": "https://www.florihana.com/en/essential-oils/502-black-pepper-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ141125LK",
+    "R130624MG",
+    "R210323MG",
+    "R040322MG",
+    "R150321MG",
+    "R061020MG",
+    "B080420LK",
+    "AC230819LK",
+    "B120319LK",
+    "B270418LK"
+   ],
+   "msds": "FLE122.pdf",
+   "tds": "FLE122FT.pdf"
+  },
+  "FLE125": {
+   "url": "https://www.florihana.com/en/essential-oils/510-blue-tansy-organic.html",
+   "analyse": [],
+   "gc": [
+    "AG170626MA",
+    "AG011225MA",
+    "AG241025MA",
+    "AG230924MA",
+    "S190723MA",
+    "S281022MA",
+    "AG181121MA",
+    "AG070121MA",
+    "AG140120MA",
+    "H080719MA",
+    "H220219MA",
+    "H310718MA"
+   ],
+   "msds": "FLE125.pdf",
+   "tds": "FLE125FT.pdf"
+  },
+  "FLE126": {
+   "url": "https://www.florihana.com/en/essential-oils/514-wild-oregano-organic.html",
+   "analyse": [],
+   "gc": [
+    "S090326MA",
+    "S100225MA",
+    "S130324MA",
+    "S280723MA",
+    "H290622MA",
+    "H131221MA",
+    "H090221MA",
+    "H301020MA",
+    "H160320MA",
+    "H120319MA",
+    "H310718MA"
+   ],
+   "msds": "FLE126.pdf",
+   "tds": "FLE126FT.pdf"
+  },
+  "FLE127": {
+   "url": "https://www.florihana.com/en/essential-oils/518-red-myrtle-organic.html",
+   "analyse": [],
+   "gc": [
+    "S141124MA",
+    "S280723MA",
+    "H021121MA",
+    "H301020MA",
+    "H090720MA",
+    "H160120MA",
+    "H121219MA",
+    "H021118MA",
+    "H140918MA"
+   ],
+   "msds": "FLE127.pdf",
+   "tds": "FLE127FT.pdf"
+  },
+  "FLE130": {
+   "url": "https://www.florihana.com/en/essential-oils/526-cardamom-organic.html",
+   "analyse": [],
+   "gc": [
+    "AR011225GT",
+    "AR090725GT",
+    "AR130323GT",
+    "AR220622GT",
+    "AR200921GT",
+    "AR300321GT"
+   ],
+   "msds": "FLE130.pdf",
+   "tds": "FLE130FT.pdf"
+  },
+  "FLE133": {
+   "url": "https://www.florihana.com/en/essential-oils/534-lemon-myrtle-backhousia-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ050625AU",
+    "AZ260523AU",
+    "B260422AU",
+    "B070121AU",
+    "S070220AU"
+   ],
+   "msds": "FLE133.pdf",
+   "tds": "FLE133FT.pdf"
+  },
+  "FLE134": {
+   "url": "https://www.florihana.com/en/essential-oils/538-wild-lavender-vera-organic.html",
+   "analyse": [],
+   "gc": [
+    "140723F",
+    "200721F",
+    "130720F",
+    "180719F",
+    "180718F"
+   ],
+   "msds": "FLE134.pdf",
+   "tds": "FLE134FT.pdf"
+  },
+  "FLE135": {
+   "url": "https://www.florihana.com/en/essential-oils/542-black-spruce-organic.html",
+   "analyse": [],
+   "gc": [
+    "A240925CA",
+    "A180724CA",
+    "BA031122CA",
+    "B010222CA",
+    "B171121CA",
+    "B290721CA",
+    "B150221CA",
+    "B121020CA",
+    "B110520CA",
+    "B090120CA",
+    "B270519CA",
+    "B080119CA",
+    "B280518CA"
+   ],
+   "msds": "FLE135.pdf",
+   "tds": "FLE135FT.pdf"
+  },
+  "FLE136": {
+   "url": "https://www.florihana.com/en/essential-oils/546-khella-organic.html",
+   "analyse": [],
+   "gc": [
+    "S100225MA",
+    "S280723MA",
+    "S121222MA",
+    "S281022MA",
+    "H100122MA",
+    "H200421MA"
+   ],
+   "msds": "FLE136.pdf",
+   "tds": "FLE136FT.pdf"
+  },
+  "FLE138": {
+   "url": "https://www.florihana.com/en/essential-oils/550-wintergreen-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ190824CN",
+    "H270123NP",
+    "B060422CN",
+    "B030322CN",
+    "B190421CN",
+    "B100221CN",
+    "B090120CN",
+    "B040319CN"
+   ],
+   "msds": "FLE138.pdf",
+   "tds": "FLE138FT.pdf"
+  },
+  "FLE143": {
+   "url": "https://www.florihana.com/en/essential-oils/562-balsam-fir-organic.html",
+   "analyse": [],
+   "gc": [
+    "A241125CA",
+    "A150725CA",
+    "A141124CA",
+    "A180724CA",
+    "A130723CA",
+    "BA031122CA",
+    "A090322CA",
+    "A131221CA",
+    "A170521CA",
+    "A090221CA",
+    "A210820CA",
+    "A100320CA",
+    "A180119CA"
+   ],
+   "msds": "FLE143.pdf",
+   "tds": "FLE143FT.pdf"
+  },
+  "FLE145": {
+   "url": "https://www.florihana.com/en/essential-oils/566-geranium-rosat-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ281025EG",
+    "AZ120925EG",
+    "AZ090125EG",
+    "AZ260124EG",
+    "AZ150124EG",
+    "H270123EG",
+    "B010622EG",
+    "B150222EG",
+    "B171121EG",
+    "B190421EG",
+    "H051120EG",
+    "B100920EG",
+    "B060420EG",
+    "B060220EG",
+    "B180719EG",
+    "B170419EG",
+    "B270319EG",
+    "B250918EG",
+    "B220618EG",
+    "B090318EG"
+   ],
+   "msds": "FLE145.pdf",
+   "tds": "FLE145FT.pdf"
+  },
+  "FLE146": {
+   "url": "https://www.florihana.com/en/essential-oils/570-litsea-cubeba-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ161025CN",
+    "AZ050724CN",
+    "H210324VN",
+    "H241023CN",
+    "H240223CN",
+    "B240622CN",
+    "B131221CN",
+    "B010621CN",
+    "B190121CN",
+    "B160420CN",
+    "B270519CN"
+   ],
+   "msds": "FLE146.pdf",
+   "tds": "FLE146FT.pdf"
+  },
+  "FLE148": {
+   "url": "https://www.florihana.com/en/essential-oils/574-bergamot-bergapten-free-organic.html",
+   "analyse": [],
+   "gc": [
+    "AQ220223IT",
+    "AN250422IT",
+    "AN220921IT",
+    "AN170820IT",
+    "C200319IT"
+   ],
+   "msds": "FLE148.pdf",
+   "tds": "FLE148FT.pdf"
+  },
+  "FLE152": {
+   "url": "https://www.florihana.com/en/essential-oils/578-golden-rod-organic.html",
+   "analyse": [],
+   "gc": [
+    "A010425CA",
+    "A170518CA"
+   ],
+   "msds": "FLE152.pdf",
+   "tds": "FLE152FT.pdf"
+  },
+  "FLE153": {
+   "url": "https://www.florihana.com/en/essential-oils/582-dill-seed-organic.html",
+   "analyse": [],
+   "gc": [
+    "AZ231122F"
+   ],
+   "msds": "FLE153.pdf",
+   "tds": "FLE153FT.pdf"
+  },
+  "FLE155": {
+   "url": "https://www.florihana.com/en/essential-oils/590-frankincense-organic.html",
+   "analyse": [],
+   "gc": [
+    "S230426SO",
+    "S100225SO",
+    "S130324SO",
+    "BC210323SO",
+    "S300822SO",
+    "S150222SO",
+    "S280721SO",
+    "S190221SO",
+    "S200420SO",
+    "S270120SO",
+    "S270619SO",
+    "J101218SO",
+    "M261118SO",
+    "B161018SO",
+    "M250718SO",
+    "M200418SO"
+   ],
+   "msds": "FLE155.pdf",
+   "tds": "FLE155FT.pdf"
+  },
+  "FLE156": {
+   "url": "https://www.florihana.com/en/essential-oils/594-caraway-organic.html",
+   "analyse": [],
+   "gc": [
+    "AS260324HU",
+    "B140422FI",
+    "B190620HU",
+    "B270519HU",
+    "B080119HU",
+    "B280518HU",
+    "B0801119HU"
+   ],
+   "msds": "FLE156.pdf",
+   "tds": "FLE156FT.pdf"
+  },
+  "FLE157": {
+   "url": "https://www.florihana.com/en/essential-oils/602-labrador-tea-organic.html",
+   "analyse": [],
+   "gc": [
+    "A030325CA",
+    "A180724CA",
+    "P151220CA",
+    "P120118CA"
+   ],
+   "msds": "FLE157.pdf",
+   "tds": "FLE157FT.pdf"
+  },
+  "FLE158": {
+   "url": "https://www.florihana.com/en/essential-oils/607-mugwort-organic.html",
+   "analyse": [],
+   "gc": [
+    "S101225MA",
+    "S141124MA",
+    "S280723MA",
+    "S300822MA",
+    "S150222MA",
+    "S190121MA",
+    "S230620MA",
+    "S200420MA",
+    "H181218MA",
+    "H310718MA"
+   ],
+   "msds": "FLE158.pdf",
+   "tds": "FLE158FT.pdf"
+  },
+  "FLE161": {
+   "url": "https://www.florihana.com/en/essential-oils/1506-hysope-18-cineol-organic.html",
+   "analyse": [],
+   "gc": [
+    "E150125ES",
+    "E121023ES",
+    "E270423ES",
+    "E040222ES",
+    "E061021ES",
+    "L040121ES",
+    "L020620ES",
+    "L121119ES",
+    "L031218ES"
+   ],
+   "msds": "FLE161.pdf",
+   "tds": "FLE161FT.pdf"
+  },
+  "FLE261": {
+   "url": "https://www.florihana.com/en/essential-oils/1793-vanilla-oleoresin-organic.html",
+   "analyse": [],
+   "gc": [
+    "M271023MG",
+    "M060623MG",
+    "M030323MG",
+    "M051021MG"
+   ],
+   "msds": "FLE261.pdf",
+   "tds": "FLE261FT.pdf"
+  },
+  "FLE262": {
+   "url": "https://www.florihana.com/en/essential-oils/1555-benzoin-organic.html",
+   "analyse": [],
+   "gc": [
+    "M110925LA",
+    "M170724LA",
+    "M141223LA",
+    "M070723LA",
+    "M030423LA",
+    "M310822LA",
+    "M060122LA",
+    "M041121LA",
+    "M250521LA",
+    "M100321LA",
+    "M180121LA",
+    "M261020LA",
+    "M060720LA",
+    "M200120LA",
+    "M221019LA",
+    "M210219LA",
+    "M250718LA"
+   ],
+   "msds": "FLE262.pdf",
+   "tds": "FLE262FT.pdf"
+  },
+  "FLE263": {
+   "url": "https://www.florihana.com/en/essential-oils/1550-rose-alba-organic.html",
+   "analyse": [],
+   "gc": [
+    "AV220124BG",
+    "Q230721BG",
+    "Q231017BG"
+   ],
+   "msds": "FLE263.pdf",
+   "tds": "FLE263FT.pdf"
+  },
+  "FLE264": {
+   "url": "https://www.florihana.com/en/essential-oils/1645-myrrhe-1.html",
+   "analyse": [],
+   "gc": [
+    "C200825SO",
+    "C130325SO",
+    "C110724SO",
+    "C110423SO",
+    "C250122SO",
+    "C130921SO",
+    "C200421SO",
+    "C060121SO",
+    "C090920SO",
+    "C050520SO"
+   ],
+   "msds": "FLE264.pdf",
+   "tds": "FLE264FT.pdf"
+  },
+  "FLE265": {
+   "url": "https://www.florihana.com/en/essential-oils/623-copaiba-organic.html",
+   "analyse": [],
+   "gc": [
+    "X210526BR",
+    "X251124BR",
+    "X301023BR",
+    "X090623BR",
+    "X170522BR",
+    "P270521BR",
+    "P231120BR"
+   ],
+   "msds": "FLE265.pdf",
+   "tds": "FLE265FT.pdf"
   }
  }
 }
