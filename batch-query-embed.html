@@ -19,7 +19,11 @@
     tds=檔名.pdf       同上
 
   批次清單來自同目錄的 batches.json，由 .github/workflows/update-batches.yml
-  每日自動抓取原廠頁面更新。讀不到或該商品不在清單裡時，自動退回手動輸入批號。
+  自動抓取原廠頁面更新。三種狀態：
+    有批次           → 下拉選單，另留一行小字可切手動輸入
+    讀不到／未同步   → 退回手動輸入批號
+    原廠一份都沒掛   → 顯示「本產品目前無逐批分析文件」，不出現輸入框
+                      （原廠日後補上，同步後自動變回下拉選單，商品頁不必再改）
 -->
 <style>
   *{ box-sizing:border-box; }
@@ -38,6 +42,8 @@
   .row button{ flex:0 0 auto; padding:0 22px; border:0; border-radius:2px; cursor:pointer;
         background:#1b305c; color:#fff; font-size:14px; font-weight:700; letter-spacing:.04em; }
   .hint{ margin:-8px 0 18px; font-size:12px; color:#94a3b8; }
+  /* 原廠尚未提供任何批次文件時的靜態說明：不是錯誤訊息，語氣要正常一點 */
+  .hint.note{ margin:0; font-size:14px; color:#475569; line-height:1.9; }
   /* 後路：平常只是一行小字，點了才展開輸入框 */
   .fallback{ margin:-10px 0 16px; font-size:12px; }
   .fallback a{ color:#94a3b8; text-decoration:none; border-bottom:1px solid rgba(148,163,184,.5); }
@@ -69,6 +75,7 @@
         font-size:15px; font-weight:700; letter-spacing:.04em; }
   body.card .doc.off{ opacity:.35; }
   body.card .hint{ margin:-8px 0 14px; }
+  body.card .hint.note{ margin:0; }
 </style>
 </head>
 <body>
@@ -121,7 +128,8 @@
   const CARD       = (P.get('mode') || '') === 'card';
   const ONLY_AN    = CARD || (P.get('only') || '') === 'analysis';
   const BASE       = 'https://www.florihana.com/en/module/axproductattachments/export';
-  const IS_ANALYSE = /^FL[HVM]/.test(CODE);          // 蒸餾液／植物油／浸泡油＝分析報告，其餘＝GC 圖譜
+  // 蒸餾液 FLH／植物油 FLV／浸泡油 FLM／植物脂 FLBE＝分析報告，其餘（精油、CO2 萃取）＝GC 圖譜
+  const IS_ANALYSE = /^FL(?:BE|[HVM])/.test(CODE);
   const GC_TYPE    = IS_ANALYSE ? 'Analyse' : 'Chromatographies';
 
   let MSDS_FILE = P.get('msds') || '';
@@ -152,6 +160,22 @@
       $('lGc').removeAttribute('href');
       $('lGc').classList.add('off');
     }
+  }
+
+  /**
+   * 商品有登錄、但原廠一份批次文件都沒掛（analyse 與 gc 皆為空）。
+   * 這種商品沒有批號可輸入，叫客人輸入只會開到不存在的 PDF，
+   * 所以收掉輸入區與分析報告卡，改成一句靜態說明。
+   * 原廠日後補上文件，同步後就會自動變回下拉選單，商品頁不必再改。
+   */
+  function noBatches(){
+    $('row').style.display = 'none';
+    $('fallback').hidden = true;
+    $('lGc').style.display = 'none';
+    $('sub').textContent = '本產品目前無逐批分析文件。';
+    $('hint').textContent = '原廠尚未提供本品項的逐批分析文件，產品規格請見技術規格書（TDS）。';
+    $('hint').className = 'hint note';
+    $('hint').hidden = false;
   }
 
   function enableManual(msg){
@@ -209,7 +233,13 @@
         if (p.tds  && !TDS_FILE)  TDS_FILE  = p.tds;
         apply('');
       }
-      if (!list.length){ enableManual('此商品尚未同步批次清單，請直接輸入批號。'); return; }
+      if (!list.length){
+        // 已登錄但原廠兩種批次文件都沒有 → 靜態說明；只是還沒同步到 → 退回手動輸入
+        const none = p && !(p.analyse || []).length && !(p.gc || []).length;
+        if (none) noBatches();
+        else enableManual('此商品尚未同步批次清單，請直接輸入批號。');
+        return;
+      }
 
       const sel = $('sel');
       for (const b of list){
