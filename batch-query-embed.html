@@ -67,7 +67,11 @@
   body.card .wrap{ max-width:none; }
   body.card .lead,body.card .sub{ display:none; }
   body.card .row{ margin-bottom:16px; }
-  body.card .row select,body.card .row input{ flex:1 1 100%; }
+  /* 卡片模式：欄位不吃滿整行。批號最長是 FLE001-AZ170226NC（17 字元）約 133px，
+     加上左右 padding 與下拉箭頭約 180px，220px 有餘裕又不會空得誇張。
+     注意：只改寬度不改高度——商品頁那層是用固定 height＋overflow:hidden 裁切的，
+     欄位一變矮，widget 內容整體就變矮，連結會離卡片底部太遠、跟另外兩張卡對不齊。 */
+  body.card .row select,body.card .row input{ flex:1 1 100%; max-width:220px; }
   /* 卡片模式沒有「查詢」按鈕：輸入框吃滿整行，按鈕只能換行，硬是多吃 30px 高度，
      iframe 又是固定高，多出來的部分會無聲蓋掉最底下的「開啟 PDF」。改成邊打邊套用。 */
   body.card .row button{ display:none; }
