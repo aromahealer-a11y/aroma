@@ -68,6 +68,9 @@
   body.card .lead,body.card .sub{ display:none; }
   body.card .row{ margin-bottom:16px; }
   body.card .row select,body.card .row input{ flex:1 1 100%; }
+  /* 卡片模式沒有「查詢」按鈕：輸入框吃滿整行，按鈕只能換行，硬是多吃 30px 高度，
+     iframe 又是固定高，多出來的部分會無聲蓋掉最底下的「開啟 PDF」。改成邊打邊套用。 */
+  body.card .row button{ display:none; }
   body.card .doc{ display:inline-flex; padding:0; gap:0; background:none; border:0; }
   body.card .doc:hover{ background:none; }
   body.card .doc .badge,body.card .doc .ttl,body.card .doc .desc{ display:none; }
@@ -85,7 +88,7 @@
 
   <div class="row" id="row">
     <select id="sel"><option value="">請選擇批號</option></select>
-    <input id="b" type="text" placeholder="輸入產品批號" hidden>
+    <input id="b" type="text" placeholder="例如 190626TR" hidden>
     <button id="go" hidden>查詢</button>
   </div>
   <p class="hint" id="hint" hidden></p>
@@ -95,17 +98,17 @@
     <a class="doc off" id="lGc" target="_blank" rel="noopener">
       <span class="badge">GC/MS</span><span class="ttl">氣相分析</span>
       <span class="desc">呈現主要成分比例與化學特徵，協助專業使用者判讀每一批次的氣味輪廓。</span>
-      <span class="arrow">↗</span>
+      <span class="arrow">↗&#xFE0E;</span>
     </a>
     <a class="doc" id="lMs" target="_blank" rel="noopener">
       <span class="badge">MSDS</span><span class="ttl">安全資料</span>
       <span class="desc">提供物理與化學特徵資訊，作為儲存、運輸與專業應用的安全參考。</span>
-      <span class="arrow">↗</span>
+      <span class="arrow">↗&#xFE0E;</span>
     </a>
     <a class="doc" id="lTd" target="_blank" rel="noopener">
       <span class="badge">TDS</span><span class="ttl">技術規格</span>
       <span class="desc">包含產品識別與物性資料，以此呈現產品的一致性輪廓。</span>
-      <span class="arrow">↗</span>
+      <span class="arrow">↗&#xFE0E;</span>
     </a>
   </div>
 
@@ -178,20 +181,60 @@
     $('hint').hidden = false;
   }
 
-  function enableManual(msg){
-    $('fallback').hidden = true;
+  /**
+   * 手動輸入 ⇄ 清單選擇是雙向的。以前 enableManual 會把「改用輸入的」那行一起藏掉，
+   * 切過去就沒有任何回頭的入口，只能重整網頁。現在那行小字改成切換鈕：
+   * 清單模式顯示「批號不在清單中？改用輸入的」，手動模式顯示「改回從清單選擇」，
+   * 兩種模式各佔一行，iframe 固定高度下版面不會跳、也不會擠掉底下的「開啟 PDF」。
+   *
+   * hasList=false：清單根本沒載到（未同步／載入失敗），沒有清單可回，只留一行提示。
+   */
+  let manualBound = false;
+
+  function enableManual(msg, hasList){
     $('sel').hidden = true;
-    $('b').hidden = false;
-    $('go').hidden = false;
+    $('b').hidden   = false;
+    $('go').hidden  = false;
     $('sub').textContent = '輸入瓶身標籤上的批號，即可調閱該批次文件。';
-    if (msg){ $('hint').textContent = msg; $('hint').hidden = false; }
-    const run = () => {
-      const v = $('b').value.trim().toUpperCase();
-      $('b').value = v;
-      apply(v);
-    };
-    $('go').onclick = run;
-    $('b').addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
+
+    $('hint').textContent = msg || '';
+    $('hint').className   = 'hint';
+    $('hint').hidden      = !msg;
+
+    if (hasList){
+      $('fallbackLink').textContent = '改回從清單選擇';
+      $('fallbackLink').onclick = e => { e.preventDefault(); enableList(); };
+      $('fallback').hidden = false;
+    } else {
+      $('fallback').hidden = true;
+    }
+
+    if (!manualBound){
+      manualBound = true;
+      // 不回寫 input.value：欄位已有 text-transform:uppercase 負責顯示，
+      // 每次按鍵都改寫 value 會把游標彈到尾端。
+      // 批號實測 7 到 9 碼，打到 6 碼才讓連結亮起來，免得打到一半誤點開不存在的 PDF。
+      const run = () => {
+        const v = $('b').value.trim().toUpperCase();
+        apply(v.length >= 6 ? v : '');
+      };
+      $('go').onclick = run;
+      $('b').addEventListener('input', run);
+      $('b').addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
+    }
+    $('b').dispatchEvent(new Event('input'));
+  }
+
+  function enableList(){
+    $('b').hidden    = true;
+    $('go').hidden   = true;
+    $('sel').hidden  = false;
+    $('hint').hidden = true;
+    $('sub').textContent = '選擇瓶身標籤上的批號，即可調閱該批次文件。';
+    $('fallbackLink').textContent = '批號不在清單中？改用輸入的';
+    $('fallbackLink').onclick = e => { e.preventDefault(); enableManual('', true); };
+    $('fallback').hidden = false;
+    apply($('sel').value);
   }
 
   if (!CODE){
@@ -218,7 +261,9 @@
   // 這樣三張卡的文字風格由商品頁統一掌握，widget 不再插手文案。
   if (CARD){
     document.body.classList.add('card');
-    $('lGc').querySelector('.arrow').textContent = '開啟 PDF ↗';
+    // 箭頭後面補 \uFE0E（VARIATION SELECTOR-15）：U+2197 在 Unicode 被標記為 emoji，
+    // 手機字型 fallback 會抓 Apple Color Emoji／Noto Color Emoji 畫成彩色圖，補這個字才會維持單色文字箭頭。
+    $('lGc').querySelector('.arrow').textContent = '開啟 PDF \u2197\uFE0E';
   }
 
   apply('');   // 先讓 MSDS／TDS 可點
@@ -236,8 +281,9 @@
       if (!list.length){
         // 已登錄但原廠兩種批次文件都沒有 → 靜態說明；只是還沒同步到 → 退回手動輸入
         const none = p && !(p.analyse || []).length && !(p.gc || []).length;
+        // 提示文字要壓在一行內：卡片模式 iframe 是固定高，折成兩行就會擠掉底下的「開啟 PDF」
         if (none) noBatches();
-        else enableManual('此商品尚未同步批次清單，請直接輸入批號。');
+        else enableManual('尚未同步批次清單，請直接輸入批號', false);
         return;
       }
 
@@ -249,14 +295,10 @@
       }
       sel.onchange = () => apply(sel.value);
 
-      // 清單正常時，下方留一行小字當後路（例如剛進的新批號還沒同步）
-      $('fallback').hidden = false;
-      $('fallbackLink').onclick = e => {
-        e.preventDefault();
-        enableManual('請輸入瓶身標籤上的批號，例如 190626TR');
-      };
+      // 清單正常時，下方留一行小字當後路（例如剛進的新批號還沒同步），可雙向切換
+      enableList();
     })
-    .catch(() => enableManual('批次清單暫時無法載入，請直接輸入批號。'));
+    .catch(() => enableManual('清單暫時無法載入，請直接輸入批號', false));
 })();
 </script>
 </body>
