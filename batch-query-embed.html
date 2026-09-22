@@ -20,7 +20,7 @@
 
   批次清單來自同目錄的 batches.json，由 .github/workflows/update-batches.yml
   自動抓取原廠頁面更新。三種狀態：
-    有批次           → 下拉選單，另留一行小字可切手動輸入
+    有批次           → 下拉選單（近 3 年，至少留最新 3 批），另留一行小字可切手動輸入
     讀不到／未同步   → 退回手動輸入批號
     原廠一份都沒掛   → 顯示「本產品目前無逐批分析文件」，不出現輸入框
                       （原廠日後補上，同步後自動變回下拉選單，商品頁不必再改）
@@ -149,6 +149,29 @@
       ms: `${BASE}?type=${encodeURIComponent('Fiche de sécurité')}&file=${encodeURIComponent(MSDS_FILE || CODE + '.pdf')}&reference=${c}`,
       td: `${BASE}?type=${encodeURIComponent('Fiche technique')}&file=${encodeURIComponent(TDS_FILE  || CODE + 'FT.pdf')}&reference=${c}`
     };
+  }
+
+  /**
+   * 下拉只列近 KEEP_YEARS 年的批次；周轉慢的品項（例如近年都沒出新批的精油）
+   * 至少保留最新 KEEP_MIN 批，免得清單變空。batches.json 仍保留完整歷史，
+   * 更舊的批號可用「改用輸入的」手動查。
+   * 批號含 DDMMYY（190626TR、AZ170226NC 皆同），轉成 YYMMDD 比大小；
+   * list 由 fetch-batches.mjs 排好新→舊。
+   */
+  const KEEP_YEARS = 3;
+  const KEEP_MIN   = 3;
+
+  function recent(list){
+    const ymd = b => {
+      const m = /(\d{2})(\d{2})(\d{2})/.exec(b);
+      return m ? m[3] + m[2] + m[1] : '000000';
+    };
+    const d = new Date();
+    const cut = String(d.getFullYear() - KEEP_YEARS).slice(-2)
+              + String(d.getMonth() + 1).padStart(2, '0')
+              + String(d.getDate()).padStart(2, '0');
+    const kept = list.filter(b => ymd(b) >= cut);
+    return kept.length >= KEEP_MIN ? kept : list.slice(0, KEEP_MIN);
   }
 
   /** 下拉顯示＝商品代碼－批號，例：FLH002-220626F、FLE001-AZ170226NC */
@@ -292,7 +315,7 @@
       }
 
       const sel = $('sel');
-      for (const b of list){
+      for (const b of recent(list)){
         const o = document.createElement('option');
         o.value = b; o.textContent = label(b);
         sel.appendChild(o);
