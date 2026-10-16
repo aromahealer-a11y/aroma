@@ -105,10 +105,8 @@ body:not(.card) .doc .badge{grid-column:1;grid-row:1;color:#495990;font-size:14p
 body:not(.card) .doc .ttl{grid-column:2;grid-row:1;color:#303840;font-size:15px;font-weight:500;line-height:1.7}
 body:not(.card) .doc .desc{grid-column:3;grid-row:1;min-width:0;color:#4F5B66;font-size:14px;font-weight:400;line-height:1.8}
 body:not(.card) .doc .arrow{grid-column:4;grid-row:1;color:#495990;font-size:17px;font-weight:400;text-align:right}
-.doc .state{display:none}
 body:not(.card) .doc.off{opacity:1;pointer-events:none}
 body:not(.card) .doc.off .arrow{visibility:hidden}
-body:not(.card) .doc.off .state{display:block;grid-column:3;grid-row:2;color:#495990;font-size:14px;line-height:1.7}
 body:not(.card) .empty{padding:12px 0;color:#4F5B66;font-size:14px;line-height:1.8;text-align:left}
 a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid #495990;outline-offset:3px}
 @media(max-width:660px){
@@ -116,17 +114,16 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
  body:not(.card) .doc{grid-template-columns:64px minmax(0,1fr) 20px;gap:6px 12px;padding:16px 10px}
  body:not(.card) .doc .desc{grid-column:1 / -1;grid-row:2}
  body:not(.card) .doc .arrow{grid-column:3;grid-row:1}
- body:not(.card) .doc.off .state{grid-column:1 / -1;grid-row:3}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
   <p class="lead">批次文件查詢</p>
-  <p class="sub" id="sub">選擇瓶身批號，查閱對應文件。</p>
+  <p class="sub" id="sub">比對瓶身批號，查閱對應文件。</p>
 
   <div class="row" id="row">
-    <select id="sel" aria-label="選擇瓶身批號"><option value="">請選擇批號</option></select>
+    <select id="sel" aria-label="選擇瓶身批號"><option value="">選擇批號</option></select>
     <input id="b" aria-label="輸入瓶身批號" type="text" placeholder="例如 190626TR" hidden>
     <button id="go" hidden>查詢</button>
   </div>
@@ -136,7 +133,6 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
   <div class="docs" id="docs">
     <a class="doc off" id="lGc" target="_blank" rel="noopener">
       <span class="badge">GC/MS</span><span class="ttl">氣相分析</span>
-      <span class="state" id="gcStatus">請先選擇批號</span>
       <span class="desc">查看該批次的成分比例與分析資料。</span>
       <span class="arrow">↗&#xFE0E;</span>
     </a>
@@ -255,7 +251,6 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
   let manualBound = false;
 
   function enableManual(msg, hasList){
-    $('gcStatus').textContent = '請先輸入批號';
     $('sel').hidden = true;
     $('b').hidden   = false;
     $('go').hidden  = false;
@@ -290,12 +285,11 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
   }
 
   function enableList(){
-    $('gcStatus').textContent = '請先選擇批號';
     $('b').hidden    = true;
     $('go').hidden   = true;
     $('sel').hidden  = false;
     $('hint').hidden = true;
-    $('sub').textContent = '選擇瓶身批號，查閱對應文件。';
+    $('sub').textContent = '比對瓶身批號，查閱對應文件。';
     $('fallbackLink').textContent = '找不到批號？改用輸入';
     $('fallbackLink').onclick = e => { e.preventDefault(); enableManual('', true); };
     $('fallback').hidden = false;
