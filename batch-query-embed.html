@@ -289,7 +289,7 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
     $('sel').hidden  = false;
     $('hint').hidden = true;
     $('sub').textContent = '請查看瓶身批號，查閱對應文件。';
-    $('fallbackLink').textContent = '找不到批號？改用輸入';
+    $('fallbackLink').textContent = '其他批號，請改用輸入';
     $('fallbackLink').onclick = e => { e.preventDefault(); enableManual('', true); };
     $('fallback').hidden = false;
     apply($('sel').value);
