@@ -83,40 +83,76 @@
   body.card .doc.off{ opacity:.35; }
   body.card .hint{ margin:-8px 0 14px; }
   body.card .hint.note{ margin:0; }
+
+/* 2026-10-16: readable standard widget; compact card mode retains its layout. */
+[hidden]{display:none!important}
+body:not(.card){padding:0;color:#303840;background:transparent}
+body:not(.card) .wrap{max-width:none;margin:0}
+body:not(.card) .lead{margin:0 0 6px;font-size:17px;font-weight:500;line-height:1.6;color:#303840}
+body:not(.card) .sub{margin:0 0 16px;font-size:14px;line-height:1.8;color:#4F5B66}
+body:not(.card) .row{gap:10px;margin:0 0 8px}
+body:not(.card) .row select,body:not(.card) .row input{flex:0 1 420px;width:100%;max-width:420px;min-height:48px;border:1px solid #AAB3BF;border-radius:2px;padding:11px 12px;font-family:inherit;font-size:15px;line-height:24px;color:#303840;background:#fff}
+body:not(.card) .row button{min-height:48px;padding:0 20px;background:#495990;font-family:inherit;font-size:15px;font-weight:500;letter-spacing:.02em}
+body:not(.card) .fallback{margin:0 0 12px;font-size:14px;line-height:1.7}
+body:not(.card) .fallback a{display:inline-flex;align-items:center;min-height:44px;color:#495990;text-decoration:underline;text-underline-offset:4px;border:0}
+body:not(.card) .fallback a:hover{color:#1A1A1A;text-decoration-thickness:2px}
+body:not(.card) .hint{margin:0 0 12px;font-size:14px;line-height:1.8;color:#4F5B66}
+body:not(.card) .hint.note{margin:0 0 12px}
+body:not(.card) .docs{display:block;border-top:1px solid #DDE1E8}
+body:not(.card) .doc{display:grid;grid-template-columns:72px 108px minmax(0,1fr) 20px;gap:6px 16px;align-items:center;padding:18px 12px;border:0;border-bottom:1px solid #DDE1E8;background:transparent;color:#303840}
+body:not(.card) .doc:hover{background:#F1F3F7}
+body:not(.card) .doc .badge{grid-column:1;grid-row:1;color:#495990;font-size:14px;font-weight:500;line-height:1.7;letter-spacing:.02em}
+body:not(.card) .doc .ttl{grid-column:2;grid-row:1;color:#303840;font-size:15px;font-weight:500;line-height:1.7}
+body:not(.card) .doc .desc{grid-column:3;grid-row:1;min-width:0;color:#4F5B66;font-size:14px;font-weight:400;line-height:1.8}
+body:not(.card) .doc .arrow{grid-column:4;grid-row:1;color:#495990;font-size:17px;font-weight:400;text-align:right}
+.doc .state{display:none}
+body:not(.card) .doc.off{opacity:1;pointer-events:none}
+body:not(.card) .doc.off .arrow{visibility:hidden}
+body:not(.card) .doc.off .state{display:block;grid-column:3;grid-row:2;color:#495990;font-size:14px;line-height:1.7}
+body:not(.card) .empty{padding:12px 0;color:#4F5B66;font-size:14px;line-height:1.8;text-align:left}
+a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid #495990;outline-offset:3px}
+@media(max-width:660px){
+ body:not(.card) .row select,body:not(.card) .row input{flex:1 1 180px;max-width:none}
+ body:not(.card) .doc{grid-template-columns:64px minmax(0,1fr) 20px;gap:6px 12px;padding:16px 10px}
+ body:not(.card) .doc .desc{grid-column:1 / -1;grid-row:2}
+ body:not(.card) .doc .arrow{grid-column:3;grid-row:1}
+ body:not(.card) .doc.off .state{grid-column:1 / -1;grid-row:3}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <p class="lead">每一瓶皆對應一組化學指紋。</p>
-  <p class="sub" id="sub">選擇瓶身標籤上的批號，即可調閱該批次文件。</p>
+  <p class="lead">批次文件查詢</p>
+  <p class="sub" id="sub">選擇瓶身批號，查閱對應文件。</p>
 
   <div class="row" id="row">
-    <select id="sel"><option value="">請選擇批號</option></select>
-    <input id="b" type="text" placeholder="例如 190626TR" hidden>
+    <select id="sel" aria-label="選擇瓶身批號"><option value="">請選擇批號</option></select>
+    <input id="b" aria-label="輸入瓶身批號" type="text" placeholder="例如 190626TR" hidden>
     <button id="go" hidden>查詢</button>
   </div>
   <p class="hint" id="hint" hidden></p>
-  <p class="fallback" id="fallback" hidden><a href="#" id="fallbackLink">批號不在清單中？改用輸入的</a></p>
+  <p class="fallback" id="fallback" hidden><a href="#" id="fallbackLink">找不到批號？改用輸入</a></p>
 
   <div class="docs" id="docs">
     <a class="doc off" id="lGc" target="_blank" rel="noopener">
       <span class="badge">GC/MS</span><span class="ttl">氣相分析</span>
-      <span class="desc">呈現主要成分比例與化學特徵，協助專業使用者判讀每一批次的氣味輪廓。</span>
+      <span class="state" id="gcStatus">請先選擇批號</span>
+      <span class="desc">查看該批次的成分比例與分析資料。</span>
       <span class="arrow">↗&#xFE0E;</span>
     </a>
     <a class="doc" id="lMs" target="_blank" rel="noopener">
       <span class="badge">MSDS</span><span class="ttl">安全資料</span>
-      <span class="desc">提供物理與化學特徵資訊，作為儲存、運輸與專業應用的安全參考。</span>
+      <span class="desc">查看儲存、運輸與使用的安全資訊。</span>
       <span class="arrow">↗&#xFE0E;</span>
     </a>
     <a class="doc" id="lTd" target="_blank" rel="noopener">
       <span class="badge">TDS</span><span class="ttl">技術規格</span>
-      <span class="desc">包含產品識別與物性資料，以此呈現產品的一致性輪廓。</span>
+      <span class="desc">查看產品規格與物性資料。</span>
       <span class="arrow">↗&#xFE0E;</span>
     </a>
   </div>
 
-  <p class="empty" id="empty">請從商品頁的「批次文件查詢」進入，<br>即可調閱對應批次的文件。</p>
+  <p class="empty" id="empty">請從商品頁開啟批次文件查詢。</p>
 </div>
 
 <script>
@@ -202,8 +238,8 @@
     $('row').style.display = 'none';
     $('fallback').hidden = true;
     $('lGc').style.display = 'none';
-    $('sub').textContent = '本產品目前無逐批分析文件。';
-    $('hint').textContent = '原廠尚未提供本品項的逐批分析文件，產品規格請見技術規格書（TDS）。';
+    $('sub').textContent = '目前無逐批分析文件。';
+    $('hint').textContent = '原廠尚未提供逐批文件，請參閱技術規格（TDS）。';
     $('hint').className = 'hint note';
     $('hint').hidden = false;
   }
@@ -211,7 +247,7 @@
   /**
    * 手動輸入 ⇄ 清單選擇是雙向的。以前 enableManual 會把「改用輸入的」那行一起藏掉，
    * 切過去就沒有任何回頭的入口，只能重整網頁。現在那行小字改成切換鈕：
-   * 清單模式顯示「批號不在清單中？改用輸入的」，手動模式顯示「改回從清單選擇」，
+   * 清單模式顯示「找不到批號？改用輸入」，手動模式顯示「改用清單選擇」，
    * 兩種模式各佔一行，iframe 固定高度下版面不會跳、也不會擠掉底下的「開啟 PDF」。
    *
    * hasList=false：清單根本沒載到（未同步／載入失敗），沒有清單可回，只留一行提示。
@@ -219,17 +255,18 @@
   let manualBound = false;
 
   function enableManual(msg, hasList){
+    $('gcStatus').textContent = '請先輸入批號';
     $('sel').hidden = true;
     $('b').hidden   = false;
     $('go').hidden  = false;
-    $('sub').textContent = '輸入瓶身標籤上的批號，即可調閱該批次文件。';
+    $('sub').textContent = '輸入瓶身批號，查閱對應文件。';
 
     $('hint').textContent = msg || '';
     $('hint').className   = 'hint';
     $('hint').hidden      = !msg;
 
     if (hasList){
-      $('fallbackLink').textContent = '改回從清單選擇';
+      $('fallbackLink').textContent = '改用清單選擇';
       $('fallbackLink').onclick = e => { e.preventDefault(); enableList(); };
       $('fallback').hidden = false;
     } else {
@@ -253,12 +290,13 @@
   }
 
   function enableList(){
+    $('gcStatus').textContent = '請先選擇批號';
     $('b').hidden    = true;
     $('go').hidden   = true;
     $('sel').hidden  = false;
     $('hint').hidden = true;
-    $('sub').textContent = '選擇瓶身標籤上的批號，即可調閱該批次文件。';
-    $('fallbackLink').textContent = '批號不在清單中？改用輸入的';
+    $('sub').textContent = '選擇瓶身批號，查閱對應文件。';
+    $('fallbackLink').textContent = '找不到批號？改用輸入';
     $('fallbackLink').onclick = e => { e.preventDefault(); enableManual('', true); };
     $('fallback').hidden = false;
     apply($('sel').value);
@@ -276,7 +314,7 @@
   if (IS_ANALYSE){
     $('lGc').querySelector('.badge').textContent = 'Analysis';
     $('lGc').querySelector('.ttl').textContent   = '分析報告';
-    $('lGc').querySelector('.desc').textContent  = '該批次的原廠實驗室檢測數據。';
+    $('lGc').querySelector('.desc').textContent  = '查看該批次的原廠檢測資料。';
   }
   // only=analysis：商品頁已自行列出 MSDS／TDS 時，這裡只留分析報告
   if (ONLY_AN){
@@ -310,7 +348,7 @@
         const none = p && !(p.analyse || []).length && !(p.gc || []).length;
         // 提示文字要壓在一行內：卡片模式 iframe 是固定高，折成兩行就會擠掉底下的「開啟 PDF」
         if (none) noBatches();
-        else enableManual('尚未同步批次清單，請直接輸入批號', false);
+        else enableManual('尚無批次清單，請輸入批號。', false);
         return;
       }
 
@@ -325,8 +363,32 @@
       // 清單正常時，下方留一行小字當後路（例如剛進的新批號還沒同步），可雙向切換
       enableList();
     })
-    .catch(() => enableManual('清單暫時無法載入，請直接輸入批號', false));
+    .catch(() => enableManual('清單暫時無法載入，請輸入批號。', false));
+})();
+</script>
+
+<script id="ah-batch-query-resize-20261016">
+(function(){
+  'use strict';
+  if(window.parent===window||new URLSearchParams(location.search).get('mode')==='card')return;
+  var wrap=document.querySelector('.wrap'),last=0,queued=false;
+  if(!wrap)return;
+  function report(){
+    queued=false;
+    var s=getComputedStyle(document.body);
+    var h=Math.ceil(wrap.getBoundingClientRect().height+parseFloat(s.paddingTop||0)+parseFloat(s.paddingBottom||0));
+    if(h===last||h<1)return;
+    last=h;
+    window.parent.postMessage({type:'ah-batch-query-height',height:h},'*');
+  }
+  function schedule(){if(!queued){queued=true;requestAnimationFrame(report);}}
+  if(typeof ResizeObserver==='function')new ResizeObserver(schedule).observe(wrap);
+  new MutationObserver(schedule).observe(wrap,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['hidden','class','style']});
+  window.addEventListener('resize',schedule);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(schedule);
+  schedule();
 })();
 </script>
 </body>
 </html>
+
