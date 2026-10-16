@@ -119,8 +119,7 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
 </head>
 <body>
 <div class="wrap">
-  <p class="lead">批次文件查詢</p>
-  <p class="sub" id="sub">比對瓶身批號，查閱對應文件。</p>
+  <p class="sub" id="sub">請查看瓶身批號，查閱對應文件。</p>
 
   <div class="row" id="row">
     <select id="sel" aria-label="選擇瓶身批號"><option value="">選擇批號</option></select>
@@ -289,7 +288,7 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
     $('go').hidden   = true;
     $('sel').hidden  = false;
     $('hint').hidden = true;
-    $('sub').textContent = '比對瓶身批號，查閱對應文件。';
+    $('sub').textContent = '請查看瓶身批號，查閱對應文件。';
     $('fallbackLink').textContent = '找不到批號？改用輸入';
     $('fallbackLink').onclick = e => { e.preventDefault(); enableManual('', true); };
     $('fallback').hidden = false;
