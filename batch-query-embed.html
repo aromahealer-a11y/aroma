@@ -127,7 +127,7 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
     <button id="go" hidden>查詢</button>
   </div>
   <p class="hint" id="hint" hidden></p>
-  <p class="fallback" id="fallback" hidden><a href="#" id="fallbackLink">找不到批號？改用輸入</a></p>
+  <p class="fallback" id="fallback" hidden><a href="#" id="fallbackLink">其他批號，請改用輸入</a></p>
 
   <div class="docs" id="docs">
     <a class="doc off" id="lGc" target="_blank" rel="noopener">
@@ -242,7 +242,7 @@ a:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible{ou
   /**
    * 手動輸入 ⇄ 清單選擇是雙向的。以前 enableManual 會把「改用輸入的」那行一起藏掉，
    * 切過去就沒有任何回頭的入口，只能重整網頁。現在那行小字改成切換鈕：
-   * 清單模式顯示「找不到批號？改用輸入」，手動模式顯示「改用清單選擇」，
+   * 清單模式顯示「其他批號，請改用輸入」，手動模式顯示「改用清單選擇」，
    * 兩種模式各佔一行，iframe 固定高度下版面不會跳、也不會擠掉底下的「開啟 PDF」。
    *
    * hasList=false：清單根本沒載到（未同步／載入失敗），沒有清單可回，只留一行提示。
